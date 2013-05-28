@@ -2,6 +2,25 @@ img {
     max-width: 100%;
 }
 
+#archiveTree {
+    margin-top: 0%;
+}
+
+#archiveTreeYearBranch {
+    margin-top: 1%;
+    margin-left: 0%;
+}
+
+#archiveTreeMonthBranch {
+    margin-top: 1%;
+    margin-left: 2%;
+}
+
+#archiveTreePostLeaf {
+    margin-top: 0%;
+    margin-left: 3%;
+}
+
 @media all {
     html {
         font-family: 'brandon-grotesque', Open Sans, Helvetica, sans-serif;
