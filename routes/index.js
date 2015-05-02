@@ -1,9 +1,12 @@
-var express = require('express');
-var router = express.Router();
+var errors = require('./errors');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+module.exports = function (app) {
 
-module.exports = router;
+  // home page
+  app.get('/', function(req, res){
+    res.render('home.jade');
+  })
+
+  //error handlers
+  errors(app);
+}
