@@ -1,9 +1,9 @@
 /**
  * Created by Mihnea on 5/1/2015.
  */
-var mongoose = require('mongoose');
 var express = require('express');
 var routes = require('./routes');
+var mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost', function(err){
     if (err) throw err;
