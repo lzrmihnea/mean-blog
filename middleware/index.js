@@ -2,21 +2,31 @@
  * Created by Mihnea on 5/2/2015.
  */
 var express = require('express');
+var morgan = require('morgan');
+var session = require('express-session');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
 
-module.exports = function(app) {
-    app.use(express.logger('dev'));
+module.exports = function (app) {
+    app.use(morgan('dev'));
 
     // Good for now
     // In the future, use connect-mongo or similar
     // for persistant sessions
-    app.use(express.cookieParser());
-    app.use(express.session({secret: 'building a blog'}));
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({
+        extended: true
+    }));
+    app.use(cookieParser());
+    app.use(session({secret: 'building a blog', saveUninitialized: true, resave: true}));
 
-    app.use(express.bodyParser());
 
     // Expose session to views
     app.use(function (req, res, next) {
-        res.locals.session = req.session;
+        if (req.user) {
+            req.locals.isLoggedIn = req.session.isLoggedIn;
+            req.locals.member = req.session.member;
+        }
         next();
     })
 }

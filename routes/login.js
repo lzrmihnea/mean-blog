@@ -10,18 +10,60 @@ mongoose.model('User');
 
 var cleanString = require('../helpers/cleanString');
 var hash = require('../helpers/hash');
+//TODO crypto
 var crypto = require('crypto');
 
 module.exports = function (app) {
 
+    app.get('/login', function (req, res) {
+        res.render('login.jade');
+    });
+
+    app.post('/login', function (req, res, next) {
+        //TODO add cleanString
+        var email = req.body.email.toLowerCase();
+        var pass = req.body.pass;
+        if (!(email && pass)) {
+            return invalid();
+        }
+
+        User.findById(email, function (err, user) {
+            if (err) return next(err);
+
+            if (!user) {
+                return invalid();
+            }
+
+            // Check pass
+            if (user.hash != hash(pass, user.salt)) {
+                return invalid();
+            }
+
+            isLoggedIn = true;
+            member = email;
+            console.log('Logged in user: %s', email);
+            return res.redirect('/');
+        })
+        function invalid() {
+            return res.render('login.jade', {invalid: true});
+        }
+    })
+    app.get('/logout', function (req, res) {
+        isLoggedIn = false;
+        user = null;
+        return res.redirect('/');
+    });
     app.get('/signup', function (req, res) {
         res.render('signup.jade');
     });
 
-    // Create a new accoutn
     app.post('/signup', function (req, res, next) {
-        var email = cleanString(req.param('email'));
-        var pass = cleanString(req.param('pass'));
+        //var email = cleanString(req.params('email'));
+        //var pass = cleanString(req.params('pass'));
+        //TODO add cleanString
+        //console.log(req);
+        var email = req.body.email.toLowerCase();
+        var pass = req.body.pass;
         if (!(email && pass)) {
             return invalid();
         }
@@ -30,6 +72,7 @@ module.exports = function (app) {
             if (err) return next(err);
 
             if (user) {
+                console.log('a check was made if the user exists. The user was found!')
                 return res.render('signup.jade', {exists: true});
             }
 
@@ -49,12 +92,17 @@ module.exports = function (app) {
                     }
 
                     // User created successfully
-                    req.session.isLoggedIn = true;
-                    req.session.user = email;
+                    isLoggedIn = true;
+                    user = email;
                     console.log('Created user: %s', email);
                     return res.redirect('/');
                 })
             })
         })
+        function invalid() {
+            return res.render('signup.jade', {invalid: true});
+        }
     })
+
+
 }

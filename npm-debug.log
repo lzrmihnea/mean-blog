@@ -1,135 +1,24 @@
 0 info it worked if it ends with ok
 1 verbose cli [ 'C:\\Program Files\\nodejs\\\\node.exe',
 1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
-1 verbose cli   'install',
-1 verbose cli   '[consolidate,',
-1 verbose cli   'swig]',
-1 verbose cli   '--save' ]
+1 verbose cli   'install' ]
 2 info using npm@1.4.28
 3 info using node@v0.10.33
 4 verbose node symlink C:\Program Files\nodejs\\node.exe
-5 verbose readDependencies using package.json deps
-6 verbose cache add [ '[consolidate,', null ]
-7 verbose cache add name=undefined spec="[consolidate," args=["[consolidate,",null]
-8 verbose parsed url { protocol: null,
-8 verbose parsed url   slashes: null,
-8 verbose parsed url   auth: null,
-8 verbose parsed url   host: null,
-8 verbose parsed url   port: null,
-8 verbose parsed url   hostname: null,
-8 verbose parsed url   hash: null,
-8 verbose parsed url   search: null,
-8 verbose parsed url   query: null,
-8 verbose parsed url   pathname: '[consolidate,',
-8 verbose parsed url   path: '[consolidate,',
-8 verbose parsed url   href: '[consolidate,' }
-9 verbose cache add [ 'swig]', null ]
-10 verbose cache add name=undefined spec="swig]" args=["swig]",null]
-11 verbose parsed url { protocol: null,
-11 verbose parsed url   slashes: null,
-11 verbose parsed url   auth: null,
-11 verbose parsed url   host: null,
-11 verbose parsed url   port: null,
-11 verbose parsed url   hostname: null,
-11 verbose parsed url   hash: null,
-11 verbose parsed url   search: null,
-11 verbose parsed url   query: null,
-11 verbose parsed url   pathname: 'swig]',
-11 verbose parsed url   path: 'swig]',
-11 verbose parsed url   href: 'swig]' }
-12 silly lockFile 3cff42af-consolidate [consolidate,
-13 verbose lock [consolidate, C:\Users\Mihnea\AppData\Roaming\npm-cache\3cff42af-consolidate.lock
-14 silly lockFile 4dca35da-swig swig]
-15 verbose lock swig] C:\Users\Mihnea\AppData\Roaming\npm-cache\4dca35da-swig.lock
-16 silly lockFile 3cff42af-consolidate [consolidate,
-17 silly lockFile 3cff42af-consolidate [consolidate,
-18 silly lockFile 4dca35da-swig swig]
-19 silly lockFile 4dca35da-swig swig]
-20 verbose addNamed [ '[consolidate,', '' ]
-21 verbose addNamed [ null, '*' ]
-22 silly lockFile ef7770c7-consolidate [consolidate,@
-23 verbose lock [consolidate,@ C:\Users\Mihnea\AppData\Roaming\npm-cache\ef7770c7-consolidate.lock
-24 verbose addNamed [ 'swig]', '' ]
-25 verbose addNamed [ null, '*' ]
-26 silly lockFile 5e2fb613-swig swig]@
-27 verbose lock swig]@ C:\Users\Mihnea\AppData\Roaming\npm-cache\5e2fb613-swig.lock
-28 silly addNameRange { name: '[consolidate,', range: '*', hasData: false }
-29 silly addNameRange { name: 'swig]', range: '*', hasData: false }
-30 verbose request where is /[consolidate,
-31 verbose request registry https://registry.npmjs.org/
-32 verbose request id 1f8d1da60b675f1f
-33 verbose url raw /[consolidate,
-34 verbose url resolving [ 'https://registry.npmjs.org/', './%5Bconsolidate%2C' ]
-35 verbose url resolved https://registry.npmjs.org/%5Bconsolidate%2C
-36 verbose request where is https://registry.npmjs.org/%5Bconsolidate%2C
-37 info trying registry request attempt 1 at 19:32:32
-38 http GET https://registry.npmjs.org/%5Bconsolidate%2C
-39 verbose request where is /swig]
-40 verbose request registry https://registry.npmjs.org/
-41 verbose url raw /swig]
-42 verbose url resolving [ 'https://registry.npmjs.org/', './swig%5D' ]
-43 verbose url resolved https://registry.npmjs.org/swig%5D
-44 verbose request where is https://registry.npmjs.org/swig%5D
-45 info trying registry request attempt 1 at 19:32:32
-46 http GET https://registry.npmjs.org/swig%5D
-47 http 404 https://registry.npmjs.org/swig%5D
-48 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
-48 verbose headers   'content-type': 'application/json',
-48 verbose headers   'cache-control': 'max-age=0',
-48 verbose headers   'content-length': '51',
-48 verbose headers   'accept-ranges': 'bytes',
-48 verbose headers   date: 'Fri, 01 May 2015 16:32:23 GMT',
-48 verbose headers   via: '1.1 varnish',
-48 verbose headers   age: '0',
-48 verbose headers   connection: 'keep-alive',
-48 verbose headers   'x-served-by': 'cache-ams4128-AMS',
-48 verbose headers   'x-cache': 'MISS',
-48 verbose headers   'x-cache-hits': '0',
-48 verbose headers   'x-timer': 'S1430497943.039795,VS0,VE167' }
-49 silly registry.get cb [ 404,
-49 silly registry.get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
-49 silly registry.get     'content-type': 'application/json',
-49 silly registry.get     'cache-control': 'max-age=0',
-49 silly registry.get     'content-length': '51',
-49 silly registry.get     'accept-ranges': 'bytes',
-49 silly registry.get     date: 'Fri, 01 May 2015 16:32:23 GMT',
-49 silly registry.get     via: '1.1 varnish',
-49 silly registry.get     age: '0',
-49 silly registry.get     connection: 'keep-alive',
-49 silly registry.get     'x-served-by': 'cache-ams4128-AMS',
-49 silly registry.get     'x-cache': 'MISS',
-49 silly registry.get     'x-cache-hits': '0',
-49 silly registry.get     'x-timer': 'S1430497943.039795,VS0,VE167' } ]
-50 silly lockFile 5e2fb613-swig swig]@
-51 silly lockFile 5e2fb613-swig swig]@
-52 http 404 https://registry.npmjs.org/%5Bconsolidate%2C
-53 silly registry.get cb [ 404,
-53 silly registry.get   { 'content-type': 'application/json',
-53 silly registry.get     'cache-control': 'max-age=0',
-53 silly registry.get     'content-length': '73',
-53 silly registry.get     'accept-ranges': 'bytes',
-53 silly registry.get     date: 'Fri, 01 May 2015 16:32:23 GMT',
-53 silly registry.get     via: '1.1 varnish',
-53 silly registry.get     age: '0',
-53 silly registry.get     connection: 'keep-alive',
-53 silly registry.get     'x-served-by': 'cache-ams4120-AMS',
-53 silly registry.get     'x-cache': 'MISS',
-53 silly registry.get     'x-cache-hits': '0',
-53 silly registry.get     'x-timer': 'S1430497943.030315,VS0,VE374' } ]
-54 silly lockFile ef7770c7-consolidate [consolidate,@
-55 silly lockFile ef7770c7-consolidate [consolidate,@
-56 error 404 404 Not Found: swig%5D
-56 error 404
-56 error 404 'swig%5D' is not in the npm registry.
-56 error 404 You should bug the author to publish it
-56 error 404 It was specified as a dependency of 'mean-tutorial'
-56 error 404
-56 error 404 Note that you can also install from a
-56 error 404 tarball, folder, or http url, or git url.
-57 error System Windows_NT 6.1.7601
-58 error command "C:\\Program Files\\nodejs\\\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "[consolidate," "swig]" "--save"
-59 error cwd D:\Development\Projects\mean-tutorial
-60 error node -v v0.10.33
-61 error npm -v 1.4.28
-62 error code E404
-63 verbose exit [ 1, true ]
+5 error install Couldn't read dependencies
+6 error Failed to parse json
+6 error Unexpected token /
+7 error File: D:\Development\Projects\mean-tutorial\package.json
+8 error Failed to parse package.json data.
+8 error package.json must be actual JSON, not just JavaScript.
+8 error
+8 error This is not a bug in npm.
+8 error Tell the package author to fix their package.json file. JSON.parse
+9 error System Windows_NT 6.1.7601
+10 error command "C:\\Program Files\\nodejs\\\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install"
+11 error cwd D:\Development\Projects\mean-tutorial
+12 error node -v v0.10.33
+13 error npm -v 1.4.28
+14 error file D:\Development\Projects\mean-tutorial\package.json
+15 error code EJSONPARSE
+16 verbose exit [ 1, true ]
