@@ -12,6 +12,7 @@
     "crypto": "0.0.3",
     "debug": "~2.1.1",
     "express": "~4.12.2",
+    "express-mongoose": "^0.1.0",
     "express-session": "1.11.1",
     "jade": "~1.9.2",
     "method-override": "2.3.2",

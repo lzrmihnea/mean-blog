@@ -7,17 +7,17 @@ html
         h1= pageTitle
         section.login
             ul
-                li
+                span
                     a(href='/') Home
                 if (isLoggedIn == true)
-                    li
-                        a(href='/post/create') New post
-                    li
-                        a(href="/logout") Logout
+                    | &#09 &#149 &#09
+                    a(href='/post/create') New post
+                    | &#09 &#149 &#09
+                    a(href="/logout") Logout
                 else
-                    li
-                        a(href="/login") Login
-                    li
-                        a(href="/signup") Create Account
+                    | &#09 &#149 &#09
+                    a(href="/login") Login
+                    | &#09 &#149 &#09
+                    a(href="/signup") Create Account
         section.content
         block content

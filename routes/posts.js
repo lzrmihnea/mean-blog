@@ -14,7 +14,7 @@ module.exports = function (app) {
     // Create
     app.get("/post/create", loggedIn, function (req, res) {
         res.render('post/create.jade');
-    })
+    });
 
     app.post("/post/create", loggedIn, function (req, res, next) {
         var body = req.body.body;
@@ -29,7 +29,7 @@ module.exports = function (app) {
             if (err) return next(err);
             res.redirect('/');
         });
-    })
+    });
 
     // read blog posts
     app.get("/post/:id", function(req, res, next) {
@@ -43,6 +43,43 @@ module.exports = function (app) {
             if(!post) return next(); //404
 
             res.render('post/view.jade', {post:post});
+        });
+    });
+
+    // DELETE
+    // TODO Make a small popup appear after clicking on delete delete
+    app.get("/post/remove/:id", loggedIn, function(req, res, next){
+        var id = req.params.id;
+
+        BlogPost.findOne({_id:id}, function(err,post){
+            if(err) return next(err);
+
+            // Validate logged in user who authored this post
+            if(post.author != req.session.user._id) {
+                return res.send(403);
+            }
+
+            post.remove(function(err){
+                if(err) return next(err);
+
+                // TODO display a confirmation message to user
+                res.redirect('/');
+            })
+        })
+    });
+
+    // UPDATE
+    app.get("/post/edit/:id", loggedIn, function(req,res,next){
+        res.render('post/create.jade',{
+            post: BlogPost.findById(req.params.id)
+        })
+    });
+
+    app.post("/post/edit/:id", loggedIn, function(req,res,next){
+        BlogPost.edit(req, function(err){
+            if(err) return next(err);
+            //res.redirect("/post/"+req.params.id);
+            res.redirect("/");
         })
     })
-}
+};

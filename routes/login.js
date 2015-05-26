@@ -41,6 +41,7 @@ module.exports = function (app) {
 
             isLoggedIn = true;
             member = email;
+            req.session.user = user;
             console.log('Logged in user: %s', email);
             return res.redirect('/');
         })

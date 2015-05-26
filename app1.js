@@ -2,6 +2,10 @@
  * Created by Mihnea on 5/1/2015.
  */
 var express = require('express');
+
+// Add Mongoose query and promise to support to express
+require('express-mongoose');
+
 var routes = require('./routes');
 var middleware = require('./middleware');
 //var initializedModels = require('./models/models.js').initialize();
