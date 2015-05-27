@@ -2,22 +2,22 @@ html5
 html
     head
         title= pageTitle
-    body
-        header
-        h1= pageTitle
-        section.login
-            ul
-                span
-                    a(href='/') Home
-                if (isLoggedIn == true)
-                    | &#09 &#149 &#09
-                    a(href='/post/create') New post
-                    | &#09 &#149 &#09
-                    a(href="/logout") Logout
-                else
-                    | &#09 &#149 &#09
-                    a(href="/login") Login
-                    | &#09 &#149 &#09
-                    a(href="/signup") Create Account
-        section.content
-        block content
+body
+    header
+    h1= pageTitle
+    section.login
+        ul
+            span
+                a(href='/') Home
+            if (isLoggedIn == true)
+                | &#09 &#149 &#09
+                a(href='/post/create') New post
+                | &#09 &#149 &#09
+                a(href="/logout") Logout
+            else
+                | &#09 &#149 &#09
+                a(href="/login") Login
+                | &#09 &#149 &#09
+                a(href="/register") Register
+    section.content
+    block content

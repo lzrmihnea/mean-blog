@@ -22,7 +22,6 @@ schema.statics.edit = function(req,callback) {
     var query = { _id:id, author:author};
 
     var update={};
-    //TODO req.params... sau req.body... ?
     update.title=req.body.title;
     update.body=req.body.body;
 
@@ -30,7 +29,7 @@ schema.statics.edit = function(req,callback) {
         if(err) return callback(err);
 
         if(0==numAffected) {
-            return callback(new Error('no post to modify'));
+            return callback(new Error('No post to modify'));
         }
 
         callback();

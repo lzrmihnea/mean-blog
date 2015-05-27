@@ -11,9 +11,10 @@ block content
                 span #{post.created.toGMTString()}
                 span  &#09 | &#09
                 span by #{post.author._id}
-            h7
-                span
-                    a(href='/post/edit/#{post.id}') Edit
-                span  &#09 | &#09
-                span
-                    a(href='/post/remove/#{post.id}') Remove
+                if isLoggedIn
+                    span &#09 | &#09
+                    span
+                        a(href='/post/edit/#{post.id}') Edit
+                    span  &#09 | &#09
+                    span
+                        a(href='/post/remove/#{post.id}') Remove

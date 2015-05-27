@@ -54,15 +54,14 @@ module.exports = function (app) {
         user = null;
         return res.redirect('/');
     });
-    app.get('/signup', function (req, res) {
-        res.render('signup.jade');
+    app.get('/register', function (req, res) {
+        res.render('register.jade');
     });
 
-    app.post('/signup', function (req, res, next) {
+    app.post('/register', function (req, res, next) {
         //var email = cleanString(req.params('email'));
         //var pass = cleanString(req.params('pass'));
         //TODO add cleanString
-        //console.log(req);
         var email = req.body.email.toLowerCase();
         var pass = req.body.pass;
         if (!(email && pass)) {
@@ -73,8 +72,7 @@ module.exports = function (app) {
             if (err) return next(err);
 
             if (user) {
-                console.log('a check was made if the user exists. The user was found!')
-                return res.render('signup.jade', {exists: true});
+                return res.render('register.jade', {exists: true});
             }
 
             crypto.randomBytes(16, function (err, bytes) {
@@ -92,18 +90,18 @@ module.exports = function (app) {
                         return next(err);
                     }
 
-                    // User created successfully
                     isLoggedIn = true;
                     user = email;
+                    member = email;
+                    req.session.user = user;
                     console.log('Created user: %s', email);
                     return res.redirect('/');
                 })
             })
         })
         function invalid() {
-            return res.render('signup.jade', {invalid: true});
+            return res.render('register.jade', {invalid: true});
         }
     })
-
 
 }

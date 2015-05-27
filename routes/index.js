@@ -12,7 +12,6 @@ module.exports = function (app) {
 
     BlogPost.find().sort('created').limit(10).exec(function(err,posts){
       if(err) return next(err);
-      //res.render('home.jade');
       res.render('home.jade', {posts:posts});
     })
   })
