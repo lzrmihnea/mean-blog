@@ -33,7 +33,7 @@ module.exports = function (app) {
 
     // read blog posts
     app.get("/post/:id", function(req, res, next) {
-        var query = BlogPost.findById(req.param('id'));
+        var query = BlogPost.findById(req.params.id);
 
         query.populate('author')
 

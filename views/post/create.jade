@@ -5,12 +5,10 @@ block content
     form(method="post", action=post ? '/post/edit/' + post.id : '/post/create')
       ul
          p
-         input#title(name="title", placeholder="Title", value=post ? post.title : '')
+         input#title(name="title", placeholder="Title", value=post ? post.title : '', autocomplete='off')
          p
          textarea#body(name="body", placeholder="Blog post text", rows="20", cols="50")
             if(post)
                 | #{post.body}
-            else
-                |
          p
          input(type="submit", value="Save")
