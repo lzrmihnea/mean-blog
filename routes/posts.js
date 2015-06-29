@@ -35,6 +35,10 @@ module.exports = function (app) {
 
     // read blog posts
     app.get("/post/:id", function(req, res, next) {
+<<<<<<< HEAD
+=======
+        var query = BlogPost.findById(req.params.id);
+>>>>>>> origin/master
 
         var id=req.params.id;
 
