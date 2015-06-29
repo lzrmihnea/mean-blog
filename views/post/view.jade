@@ -18,3 +18,11 @@ block content
                     span  &#09 | &#09
                     span
                         a(href='/post/remove/#{post.id}') Remove
+                    span  &#09 | &#09
+                    span
+                        form(method='post', action="/post/comment/"+post.id)
+                            textarea(name='commentText')
+                            input(type='submit', value='Comment')
+                each comment in comments
+                    li
+                        p #{comment.author}: #{comment.text}

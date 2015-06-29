@@ -14,6 +14,10 @@ var schema = mongoose.Schema({
     author: {type: String, ref: 'User'}
 });
 
+schema.statics.findComments = function(id,callback){
+    return this.model('Comment').find({post:id},callback);
+}
+
 schema.statics.edit = function(req,callback) {
     var id=req.params.id;
     var author=req.session.user;
@@ -43,12 +47,24 @@ module.exports = mongoose.model('BlogPost', schema);
 // When new blogposts are created, lets tweet
 // npm install mongoose-lifecycle
 // http://plugins.mongoosejs.com?q=events
-//var lifecycle = require('mongoose-lifecycle');
-//schema.plugin(lifecycle);
+var lifecycle = require('mongoose-lifecycle');
+schema.plugin(lifecycle);
 
-//// handle events
-//Post.on('afterInsert', function(post){
-//    // fake tweet this
-//    var url = "http://localhost:3000/posts/"
-//    console.log("Read my new blog post! %s%s", url, post.id);
-//})
+// Compile the model
+var BlogPost = mongoose.model('BlogPost', schema);
+
+// Handle events
+BlogPost.on('afterInsert', function(post){
+    // fake tweet this
+    var url = "http://localhost:3000/posts/"
+    console.log("Read my new blog post! %s%s", url, post.id);
+})
+
+// Clean up comments
+BlogPost.on('afterRemove', function(post){
+    this.model('Comment').remove({post: post._id}).exec(function(err){
+        if(err) {
+            console.error('Had trouble cleaning up old comments.', err.stack);
+        }
+    })
+})
