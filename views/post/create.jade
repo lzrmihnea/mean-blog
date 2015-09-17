@@ -2,18 +2,30 @@
 extends ../layout
 
 block content
-    form(method="post", action=post ? '/post/edit/' + post.id : '/post/create')
-      ul
+    form(method="post", action=post ? '/post/edit/' + post.id : '/post/create', onload="iFrameOn();")
+        ul
          p
          input#title(name="title", placeholder="Title", value=post ? post.title : '', autocomplete='off')
          p
-         textarea#body(name="body", placeholder="Blog post text", rows="20", cols="50")
+         #wysiwyg_cp(style="padding:8px; width:700px")
+             input(type="button", onClick="iBold()", value="B")
+             input(type="button", onClick="iUnderline()", value="U")
+             input(type="button", onClick="iItalic()", value="I")
+             input(type="button", onClick="iFontSize()", value="Text size")
+             input(type="button", onClick="iForeColor()", value="Text color")
+             input(type="button", onClick="iHorizontalRule()", value="HR")
+             input(type="button", onClick="iUnorderedList()", value="UL")
+             input(type="button", onClick="iOrderedList()", value="OL")
+             input(type="button", onClick="iLink()", value="Link")
+             input(type="button", onClick="iUnlink()", value="Unlink")
+             input(type="button", onClick="iImage()", value="Image")
+         p
+         textarea#blogPostBody(style="display:none", name="blogPostBody", placeholder="Blog post text", rows="20", cols="50")
+         iframe#richTextField(name="richTextField")
             if(post)
                 | #{post.body}
-<<<<<<< HEAD
             else
                 | &#09
-=======
->>>>>>> origin/master
          p
-         input(type="submit", value="Save")
+         input(onClick="javascript:submit_form();", type="button", name="myBtn", value="Save")
+         //input(type="submit", name="myBtn", value="Save")
