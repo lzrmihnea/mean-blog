@@ -19,7 +19,7 @@ module.exports = function (app) {
     });
 
     app.post("/post/create", loggedIn, function (req, res, next) {
-        var body = req.body.body;
+        var body = req.body.blogPostBody;
         var title = req.body.title;
         var user = req.session.user;
 

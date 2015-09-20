@@ -8,10 +8,7 @@ require('express-mongoose');
 
 var routes = require('./routes/index');
 var middleware = require('./middleware/index');
-//var initializedModels = require('./models/models.js').initialize();
-//var models = require('./models');
 var mongoose = require('mongoose');
-//var User = mongoose.model('./routes/user.js', blogUser);
 
 mongoose.connect('mongodb://localhost', function(err){
     if (err) throw err;
