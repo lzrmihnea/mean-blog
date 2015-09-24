@@ -4,6 +4,7 @@ extends ../layout
 block content
     script
         include ./../../css/js/wiz.js
+
     form#createPost(method="post", action=post ? '/post/edit/' + post.id : '/post/create')
         ul
          p
@@ -19,7 +20,7 @@ block content
              input(type="button", onClick="iOrderedList();", value="OL")
              input(type="button", onClick="iLink();", value="Link")
              input(type="button", onClick="iUnlink();", value="Unlink")
-             input(type="button", onClick="iImage()", value="Image")
+             input(type="button", onClick="iImage();", value="Image")
          p
          textarea#blogPostBody(style="display:none", name="blogPostBody", placeholder="Blog post text", rows="20", cols="50")
          iframe#richTextField(name="richTextField", onload="iFrameOn();")
@@ -28,4 +29,4 @@ block content
             else
                 | &#09
          p
-            input(onClick="submitForm()", type="button", name="myBtn", value="Save")
+            input(onClick="submitForm();", type="button", name="myBtn", value="Save")
