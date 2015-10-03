@@ -10,7 +10,14 @@ module.exports = function (app) {
   // home page
   app.get('/', function(req, res, next){
 
-    BlogPost.find().sort('created').limit(10).exec(function(err,posts){
+      var postsFromLastWeekQuery = {
+          $where: function () {
+              const ONE_DAY = 24 * 60 * 60 * 1000;
+              return Date.now() - this.created < (ONE_DAY * 7)
+          }
+      };
+
+      BlogPost.find(postsFromLastWeekQuery).sort('created').limit(10).exec(function(err,posts){
       if(err) return next(err);
       res.render('home.jade', {posts:posts});
     })
