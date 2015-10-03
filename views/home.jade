@@ -7,17 +7,18 @@ block content
       ul.posts
          each post in posts
             li
-                h2
-                    a(href='/post/#{post.id}') #{post.title}
-                p !{post.body}
-                h5
-                    span #{post.created.toGMTString()}
-                    span &#09 | &#09
-                    span by #{post.author}
-                    if isLoggedIn
+                div(class="large-12 columns")
+                    h2
+                        a(href='/post/#{post.id}') #{post.title}
+                    p !{post.body}
+                    h5
+                        span #{post.created.toGMTString()}
                         span &#09 | &#09
-                        span
-                            a(href='/post/edit/#{post.id}') Edit
-                        span  &#09 | &#09
-                        span
-                            a(href='/post/remove/#{post.id}') Remove
+                        span by #{post.author}
+                        if isLoggedIn
+                            span &#09 | &#09
+                            span
+                                a(href='/post/edit/#{post.id}') Edit
+                            span  &#09 | &#09
+                            span
+                                a(href='/post/remove/#{post.id}') Remove
