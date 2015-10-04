@@ -5,6 +5,7 @@
 var mongoose = require('mongoose');
 require('express-mongoose');
 var User = require('mongoose').model('User');
+var moment = require('moment');
 
 // Optional: var schema = new mongoose.Schema({
 var schema = mongoose.Schema({
@@ -14,25 +15,29 @@ var schema = mongoose.Schema({
     author: {type: String, ref: 'User'}
 });
 
-schema.statics.findComments = function(id,callback){
-    return this.model('Comment').find({post:id},callback);
+schema.virtual('formattedDate').get(function () {
+    return moment(this.created).format('ddd, Do MMM YYYY');
+});
+
+schema.statics.findComments = function (id, callback) {
+    return this.model('Comment').find({post: id}, callback);
 }
 
-schema.statics.edit = function(req,callback) {
-    var id=req.params.id;
-    var author=req.session.user;
+schema.statics.edit = function (req, callback) {
+    var id = req.params.id;
+    var author = req.session.user;
 
     // Validate if current user authored this blogpost
-    var query = { _id:id, author:author};
+    var query = {_id: id, author: author};
 
-    var update={};
-    update.title=req.body.title;
-    update.body=req.body.body;
+    var update = {};
+    update.title = req.body.title;
+    update.body = req.body.body;
 
-    this.update(query,update,function(err,numAffected){
-        if(err) return callback(err);
+    this.update(query, update, function (err, numAffected) {
+        if (err) return callback(err);
 
-        if(0==numAffected) {
+        if (0 == numAffected) {
             return callback(new Error('No post to modify'));
         }
 
@@ -54,16 +59,16 @@ schema.plugin(lifecycle);
 var BlogPost = mongoose.model('BlogPost', schema);
 
 // Handle events
-BlogPost.on('afterInsert', function(post){
+BlogPost.on('afterInsert', function (post) {
     // fake tweet this
     var url = "http://localhost:3000/posts/"
     console.log("Read my new blog post! %s%s", url, post.id);
 })
 
 // Clean up comments
-BlogPost.on('afterRemove', function(post){
-    this.model('Comment').remove({post: post._id}).exec(function(err){
-        if(err) {
+BlogPost.on('afterRemove', function (post) {
+    this.model('Comment').remove({post: post._id}).exec(function (err) {
+        if (err) {
             console.error('Had trouble cleaning up old comments.', err.stack);
         }
     })

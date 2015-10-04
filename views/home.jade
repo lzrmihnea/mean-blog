@@ -6,19 +6,21 @@ block content
    else
       ul.posts
          each post in posts
-            li
-                div(class="large-12 columns")
-                    h2
-                        a(href='/post/#{post.id}') #{post.title}
-                    p !{post.body}
-                    h5
-                        span #{post.created.toGMTString()}
+            div(class="large-12 columns")
+                h2(style="display:inline")
+                    a(href='/post/#{post.id}') #{post.title}
+                | &nbsp
+                div(style="display:inline")
+                    | &nbspon&nbsp
+                    b #{post.formattedDate}
+                    | &nbspby&nbsp
+                    b #{post.author}
+                    if isLoggedIn
                         span &#09 | &#09
-                        span by #{post.author}
-                        if isLoggedIn
-                            span &#09 | &#09
-                            span
-                                a(href='/post/edit/#{post.id}') Edit
-                            span  &#09 | &#09
-                            span
-                                a(href='/post/remove/#{post.id}') Remove
+                        span
+                            a(href='/post/edit/#{post.id}') Edit
+                        span  &#09 | &#09
+                        span
+                            a(href='/post/remove/#{post.id}') Remove
+                p !{post.body}
+                p &nbsp
