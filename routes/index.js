@@ -17,7 +17,7 @@ module.exports = function (app) {
           }
       };
 
-      BlogPost.find(postsFromLastWeekQuery).sort('created').limit(10).exec(function(err,posts){
+      BlogPost.find(postsFromLastWeekQuery).sort({created:-1}).limit(10).exec(function(err,posts){
       if(err) return next(err);
       res.render('home.jade', {posts:posts});
     })
