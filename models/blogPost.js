@@ -32,7 +32,7 @@ schema.statics.edit = function (req, callback) {
 
     var update = {};
     update.title = req.body.title;
-    update.body = req.body.body;
+    update.body = req.body.blogPostBody;
 
     this.update(query, update, function (err, numAffected) {
         if (err) return callback(err);

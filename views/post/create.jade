@@ -22,11 +22,7 @@ block content
                 input(type="button", onClick="iUnlink();", value="Unlink")
                 input(type="button", onClick="iImage();", value="Image")
             textarea#blogPostBody(style="display:none", name="blogPostBody", placeholder="Blog post text", rows="20", cols="50")
-            iframe#richTextField(name="richTextField", onload="iFrameOn();", height="100$", width="100%")
-                if(post)
-                    | #{post.body}
-                else
-                    | &#09
+            iframe#richTextField(name="richTextField", onload="iFrameOn();", height="100$", width="100%", srcdoc=post ? post.body : '')
             p
             input(onClick="submitForm();", type="button", name="myBtn", value="Save")
 
