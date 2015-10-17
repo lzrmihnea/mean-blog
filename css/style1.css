@@ -1,0 +1,66 @@
+img {
+    max-width: 100%;
+}
+
+@media all {
+    html {
+        font-family: 'brandon-grotesque', Open Sans, Helvetica, sans-serif;
+    }
+    a:link {
+        color: #333;
+        text-decoration: none;
+        border-width: 0;
+        border-style: none;
+    }
+
+    a:visited {
+        color: #333;
+        text-decoration: none;
+        border: 0;
+        border-width: 0;
+        border-style: none;
+    }
+
+    a:hover {
+        color: #999;
+        text-decoration: none;
+        border: 0;
+        border-width: 0;
+        border-style: none;
+    }
+}
+
+/* Larger than mobile */
+@media (min-device-width: 100px) {
+    html {
+        font-size: 50px;
+    }
+}
+
+/* Larger than phablet (also point when grid becomes active) */
+@media (min-device-width: 550px) {
+    html {
+        font-size: 50px;
+    }
+}
+
+/* Larger than tablet */
+@media (min-device-width: 750px) {
+    html {
+        font-size: 40px;
+    }
+}
+
+/* Larger than desktop */
+@media (min-device-width: 1000px) {
+    html {
+        font-size: 30px;
+    }
+}
+
+/* Larger than Desktop HD */
+@media (min-device-width: 1200px) {
+    html {
+        font-size: 20px;
+    }
+}
