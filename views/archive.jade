@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    if !(posts && posts.length)
+        p Nothing to see here. Move along
+    else
+        ul.posts
+        each post in posts
+            h3#post_title(style="display:inline")
+                a(href='/post/#{post.id}') #{post.title}
+                | &nbsp
+            div#post_creation_date(style="float:right")
+                | #{post.formattedDate}
+                if isLoggedIn
+                    span &#09 | &#09
+                    span
+                        a(href='/post/edit/#{post.id}') Edit
+                    span  &#09 | &#09
+                    span
+                        a(href='/post/remove/#{post.id}') Remove
+            p
