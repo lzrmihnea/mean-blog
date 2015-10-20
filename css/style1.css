@@ -6,27 +6,18 @@ img {
     html {
         font-family: 'brandon-grotesque', Open Sans, Helvetica, sans-serif;
     }
-    a:link {
+
+    a {
         color: #333;
         text-decoration: none;
-        border-width: 0;
-        border-style: none;
     }
 
-    a:visited {
-        color: #333;
-        text-decoration: none;
-        border: 0;
-        border-width: 0;
-        border-style: none;
+    #post_creation_date {
+        display: inline;
     }
 
-    a:hover {
-        color: #999;
-        text-decoration: none;
-        border: 0;
-        border-width: 0;
-        border-style: none;
+    #post_creation_date {
+        display: inline;
     }
 }
 
