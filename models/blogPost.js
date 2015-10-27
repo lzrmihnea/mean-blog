@@ -23,6 +23,10 @@ schema.statics.findComments = function (id, callback) {
     return this.model('Comment').find({post: id}, callback);
 }
 
+schema.methods.getFormattedMonth= function () {
+    return moment(this.created).format('MMM');
+}
+
 schema.statics.edit = function (req, callback) {
     var id = req.params.id;
     var author = req.session.user;
