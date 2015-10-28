@@ -19,3 +19,9 @@ block content
                     span
                         a(href='/post/remove/#{post.id}') Remove
             p
+        each yearBranch in tree.years
+            p #{yearBranch.year}
+            each monthBranch in yearBranch.months
+                p #{monthBranch.month}
+                each postLeaf in monthBranch.posts
+                    p #{postLeaf.title}
