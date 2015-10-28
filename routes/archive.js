@@ -11,7 +11,7 @@ module.exports = function (app) {
 
         BlogPost.find({}).sort({created: -1}).exec(function (err, posts) {
             tree1={};
-            for (x = 0; x < posts.length; x++) {
+            for (var x = 0; x < posts.length; x++) {
                 fillTree(posts[x]);
             }
             console.log(tree1);
@@ -34,7 +34,7 @@ function fillTree(post) {
                     {
                         month: post.getFormattedMonth(),
                         posts: [
-                            {post: post.title}
+                            post
                         ]
                     }
                 ]
@@ -49,10 +49,6 @@ function fillTree(post) {
                     if (tree1.years[yearIndex].months[monthIndex].month == post.getFormattedMonth()) {
                         for (var postIndex = 0; postIndex <= tree1.years[yearIndex].months[monthIndex].posts.length; postIndex++) {
                             if (!tree1.years[yearIndex].months[monthIndex].posts[postIndex]) {
-                                tree1.years[yearIndex].months[monthIndex].posts.push(post);
-                                return;
-                            }
-                            if(tree1.years[yearIndex].months[monthIndex].posts[postIndex]!=post) {
                                 tree1.years[yearIndex].months[monthIndex].posts.push(post);
                                 return;
                             }
