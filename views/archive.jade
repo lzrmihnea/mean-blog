@@ -7,13 +7,15 @@ block content
         div#archiveTree
             each yearBranch in tree.years
                 div#archiveTreeYearBranch
-                    i #{yearBranch.year}
+                    | #{yearBranch.year}
                     div#archiveTreeMonthBranch
                         each monthBranch in yearBranch.months
                             p
                                 | #{monthBranch.month}
                                 each postLeaf in monthBranch.posts
-                                    div#archiveTreePostLeaf
-                                        p
-                                        b
-                                            a(href='/post/#{postLeaf.id}') #{postLeaf.title} (#{postLeaf.formattedDate})
+                                    p
+                                        div#archiveTreePostLeaf
+                                            b
+                                                a(href='/post/#{postLeaf.id}') #{postLeaf.title}
+                                        div#archiveTreePostLeafDate
+                                            |, on #{postLeaf.formattedDate}

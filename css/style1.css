@@ -13,12 +13,19 @@ img {
 
 #archiveTreeMonthBranch {
     margin-top: 1%;
-    margin-left: 2%;
+    margin-left: 1%;
 }
 
 #archiveTreePostLeaf {
     margin-top: 0%;
-    margin-left: 3%;
+    margin-left: 2%;
+    display:inline;
+    font-size: x-large;
+}
+
+#archiveTreePostLeafDate {
+    display:inline;
+    color:dimgray;
 }
 
 @media all {
