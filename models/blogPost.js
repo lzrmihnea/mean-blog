@@ -9,6 +9,7 @@ var moment = require('moment');
 
 // Optional: var schema = new mongoose.Schema({
 var schema = mongoose.Schema({
+    _id: String,
     title: {type: String, trim: true},
     created: {type: Date, default: Date.now},
     body: String,

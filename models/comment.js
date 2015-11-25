@@ -3,7 +3,6 @@
  */
 
 var mongoose = require('mongoose');
-var ObjectId = mongoose.Schema.Types.ObjectId;
 require('express-mongoose');
 var User = require('mongoose').model('User');
 
@@ -12,7 +11,7 @@ var schema = mongoose.Schema({
 
     id:{type:String},
     text: {type:String, trim:true, validate:validateText},
-    post: {type:ObjectId, index:true},
+    post: {type:String, index:true},
     created: {type: Date, default: Date.now},
     author: {type: String, ref: 'User'}
 })

@@ -21,15 +21,23 @@ module.exports = function (app) {
     app.post("/post/create", loggedIn, function (req, res, next) {
         var body = req.body.blogPostBody;
         var title = req.body.title;
+        var titleWithoutDashes = title.split("-").join("");
+        var titleWithoutWhitespaces = titleWithoutDashes.split(/\s+?/).join("-");
+        console.log(titleWithoutWhitespaces);
+        var id = titleWithoutWhitespaces;
         var user = req.session.user;
 
         BlogPost.create({
+            _id: id,
             body: body,
             title: title,
             author: user
         }, function (err, post) {
-            if (err) return next(err);
-            res.redirect('/');
+            if (err) {
+                    return res.render('post/create.jade', {errors:err});
+            } else {
+                res.redirect('/');
+            }
         });
     });
 
