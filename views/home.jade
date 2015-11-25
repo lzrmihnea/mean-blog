@@ -6,12 +6,10 @@ block content
    else
       ul.posts
          each post in posts
-            h1#post_title(style="display:inline")
+            #post_title(style="display:inline")
                 a(href='/post/#{post.id}') #{post.title}
-                | &nbsp
-            h5#post_creation_date(style="display:inline")
-                | &nbspon&nbsp
-                b #{post.formattedDate}
+            div#post_creation_date(style="display:inline")
+                | &nbspon #{post.formattedDate}
                 if isLoggedIn
                     span &#09 | &#09
                     span

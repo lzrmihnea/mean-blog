@@ -25,6 +25,10 @@ block content
             iframe#richTextField(name="richTextField", onload="iFrameOn();", height="100$", width="100%", srcdoc=post ? post.body : '')
             p
             input(onClick="submitForm();", type="button", name="myBtn", value="Save")
+        #errorBox
+            p
+            if (error)
+                | #{error}
 
             //More WYSIWYG stuff
 //            http://www.w3schools.com/jquerymobile/tryit.asp?filename=tryjqmob_forms_popup

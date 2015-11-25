@@ -7,11 +7,8 @@ block content
             h2(style="display:inline")
                 a(href='/post/#{post.id}') #{post.title}
             | &nbsp
-            div(style="display:inline")
-                | &nbspon&nbsp
-                b #{post.formattedDate}
-                | &nbspby&nbsp
-                b #{post.author._id}
+            div#post_creation_date(style="display:inline")
+                | on #{post.formattedDate} by #{post.author._id}
                 if isLoggedIn
                     span &#09 | &#09
                     span
@@ -19,7 +16,8 @@ block content
                     span  &#09 | &#09
                     span
                         a(href='/post/remove/#{post.id}') Remove
-            p !{post.body}
+            #post_body
+                p !{post.body}
             p &nbsp
                 span
                     form(method='post', action="/post/comment/"+post.id)
