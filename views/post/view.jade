@@ -5,22 +5,22 @@ block content
     ul
         div(class="large-12 columns")
             h2(style="display:inline")
-                a(href='/post/#{post.id}') #{post.title}
+                a(href='/a/#{post.id}') #{post.title}
             | &nbsp
             div#post_creation_date(style="display:inline")
                 | on #{post.formattedDate} by #{post.author._id}
                 if isLoggedIn
                     span &#09 | &#09
                     span
-                        a(href='/post/edit/#{post.id}') Edit
+                        a(href='/a/edit/#{post.id}') Edit
                     span  &#09 | &#09
                     span
-                        a(href='/post/remove/#{post.id}') Remove
+                        a(href='/a/remove/#{post.id}') Remove
             #post_body
                 p !{post.body}
             p &nbsp
                 span
-                    form(method='post', action="/post/comment/"+post.id)
+                    form(method='post', action="/a/comment/"+post.id)
                         textarea(name='commentText')
                         input(type='submit', value='Comment')
             each comment in comments

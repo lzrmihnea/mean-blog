@@ -14,11 +14,11 @@ mongoose.model('Comment');
 
 module.exports = function (app) {
     // Create
-    app.get("/post/create", loggedIn, function (req, res) {
+    app.get("/a/create", loggedIn, function (req, res) {
         res.render('post/create.jade');
     });
 
-    app.post("/post/create", loggedIn, function (req, res, next) {
+    app.post("/a/create", loggedIn, function (req, res, next) {
         var body = req.body.blogPostBody;
         var title = req.body.title;
         var titleWithoutDashes = title.split("-").join("");
@@ -42,7 +42,7 @@ module.exports = function (app) {
     });
 
     // read blog posts
-    app.get("/post/:id", function(req, res, next) {
+    app.get("/a/:id", function(req, res, next) {
 
         var id=req.params.id;
 
@@ -62,7 +62,7 @@ module.exports = function (app) {
 
     // DELETE
     // TODO Make a small popup appear after clicking on delete delete
-    app.get("/post/remove/:id", loggedIn, function(req, res, next){
+    app.get("/a/remove/:id", loggedIn, function(req, res, next){
         var id = req.params.id;
 
         BlogPost.findOne({_id:id}, function(err,post){
@@ -83,22 +83,22 @@ module.exports = function (app) {
     });
 
     // UPDATE
-    app.get("/post/edit/:id", loggedIn, function(req,res,next){
+    app.get("/a/edit/:id", loggedIn, function(req,res,next){
         res.render('post/create.jade',{
             post: BlogPost.findById(req.params.id)
         })
     });
 
-    app.post("/post/edit/:id", loggedIn, function(req,res,next){
+    app.post("/a/edit/:id", loggedIn, function(req,res,next){
         BlogPost.edit(req, function(err){
             if(err) return next(err);
-            //res.redirect("/post/"+req.params.id);
+            //res.redirect("/a/"+req.params.id);
             res.redirect("/");
         })
     })
 
     // COMMENTS
-    app.post("/post/comment/:id", loggedIn, function(req, res, next) {
+    app.post("/a/comment/:id", loggedIn, function(req, res, next) {
         var id= req.params.id;
         var text = req.body.commentText;
         var author = req.session.user;
@@ -111,6 +111,6 @@ module.exports = function (app) {
             if(err) return next(err);});
 
         // TODO probably want to do this all with xhr
-        res.redirect("/post/"+id);
+        res.redirect("/a/"+id);
         });
 };

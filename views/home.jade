@@ -7,16 +7,16 @@ block content
       ul.posts
          each post in posts
             #post_title(style="display:inline")
-                a(href='/post/#{post.id}') #{post.title}
+                a(href='/a/#{post.id}') #{post.title}
             div#post_creation_date(style="display:inline")
                 | &nbspon #{post.formattedDate}
                 if isLoggedIn
                     span &#09 | &#09
                     span
-                        a(href='/post/edit/#{post.id}') Edit
+                        a(href='/a/edit/#{post.id}') Edit
                     span  &#09 | &#09
                     span
-                        a(href='/post/remove/#{post.id}') Remove
+                        a(href='/a/remove/#{post.id}') Remove
             div#post_body
                 p !{post.body}
                 p &nbsp
