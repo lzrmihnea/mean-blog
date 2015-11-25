@@ -4,7 +4,7 @@ block content
     script
         include wysiwyg.js
 
-    form#createPost(method="post", action=post ? '/a/edit/' + post.id : '/a/create')
+    form#createPost(method="post", action=post ? '/a/edit/' + post.id : '/create')
         ul
             input#title(name="title", placeholder="Title", value=post ? post.title : '', autocomplete='off')
             #wysiwyg_cp(style="padding:8px; width:700px")

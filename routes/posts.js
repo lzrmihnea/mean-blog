@@ -14,11 +14,11 @@ mongoose.model('Comment');
 
 module.exports = function (app) {
     // Create
-    app.get("/a/create", loggedIn, function (req, res) {
+    app.get("/create", loggedIn, function (req, res) {
         res.render('post/create.jade');
     });
 
-    app.post("/a/create", loggedIn, function (req, res, next) {
+    app.post("/create", loggedIn, function (req, res, next) {
         var body = req.body.blogPostBody;
         var title = req.body.title;
         var titleWithoutDashes = title.split("-").join("");
