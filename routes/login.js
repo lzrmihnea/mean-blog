@@ -15,11 +15,11 @@ var crypto = require('crypto');
 
 module.exports = function (app) {
 
-    app.get('/login', function (req, res) {
+    app.get('/irinaloghin', function (req, res) {
         res.render('login.jade');
     });
 
-    app.post('/login', function (req, res, next) {
+    app.post('/irinaloghin', function (req, res, next) {
         //TODO add cleanString
         var email = req.body.email.toLowerCase();
         var pass = req.body.pass;
