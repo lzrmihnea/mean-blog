@@ -20,8 +20,12 @@ mongoose.connect(readOnlyUser_MongoLab, function (err) {
     routes(app);
 
     const PORT_NUMBER = 3000;
-    app.listen(PORT_NUMBER, function () {
-        const LOCALHOST_LINK = 'http://localhost:' + PORT_NUMBER;
+    const SERVER_PORT = process.env.OPENSHIFT_NODEJS_PORT || 8080
+
+    app.listen(SERVER_PORT, function () {
+
+        const SERVER_IP_ADDRESS = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
+        const LOCALHOST_LINK = SERVER_IP_ADDRESS + ":" + PORT_NUMBER;
         const IRINA_LOGHIN = '/irinaloghin';
 
         writeInitialConsoleMessage();
