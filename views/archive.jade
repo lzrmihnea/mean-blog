@@ -1,9 +1,7 @@
 extends layout
 
 block content
-    if !(tree)
-        p Nothing to see here. Move along
-    else
+    if (tree.years)
         div#archiveTree
             each yearBranch in tree.years
                 div#archiveTreeYearBranch

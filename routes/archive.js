@@ -1,7 +1,6 @@
 var BlogPost = require('./../models/blogPost.js');
 var Comment = require('./../models/comment.js');
-var moment = require('moment');
-var tree1 = {};
+var tree1;
 
 module.exports = function (app) {
 
@@ -10,11 +9,13 @@ module.exports = function (app) {
     app.get('/archive', function (req, res, next) {
 
         BlogPost.find({}).sort({created: -1}).exec(function (err, posts) {
-            tree1={};
-            for (var x = 0; x < posts.length; x++) {
-                fillTree(posts[x]);
+            if(posts) {
+                tree1={};
+                for (var x = 0; x < posts.length; x++) {
+                    fillTree(posts[x]);
+                }
+                console.log(tree1);
             }
-            console.log(tree1);
 
             if (err) return next(err);
             res.render('archive.jade', {posts: posts, tree: tree1});
