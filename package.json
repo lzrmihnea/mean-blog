@@ -1,9 +1,12 @@
 {
   "name": "mean-tutorial",
+  "description": "A blog with the purpose of continuously learning and self-developing",
   "version": "0.0.0",
-  "private": true,
+  "engines": {
+    "node": "4.1.2"
+  },
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./app0"
   },
   "dependencies": {
     "body-parser": "1.12.3",
