@@ -54,54 +54,54 @@ module.exports = function (app) {
         user = null;
         return res.redirect('/');
     });
-    app.get('/register', function (req, res) {
-        res.render('register.jade');
-    });
-
-    app.post('/register', function (req, res, next) {
-        //var email = cleanString(req.params('email'));
-        //var pass = cleanString(req.params('pass'));
-        //TODO add cleanString
-        var email = req.body.email.toLowerCase();
-        var pass = req.body.pass;
-        if (!(email && pass)) {
-            return invalid();
-        }
-
-        User.findById(email, function (err, user) {
-            if (err) return next(err);
-
-            if (user) {
-                return res.render('register.jade', {exists: true});
-            }
-
-            crypto.randomBytes(16, function (err, bytes) {
-                if (err) return next(err);
-
-                var user = {_id: email};
-                user.salt = bytes.toString('utf8');
-                user.hash = hash(pass, user.salt);
-
-                User.create(user, function (err, newUser) {
-                    if (err) {
-                        if (err instanceof mongoose.Error.ValidationError) {
-                            return invalid();
-                        }
-                        return next(err);
-                    }
-
-                    isLoggedIn = true;
-                    user = email;
-                    member = email;
-                    req.session.user = user;
-                    console.log('Created user: %s', email);
-                    return res.redirect('/');
-                })
-            })
-        })
-        function invalid() {
-            return res.render('register.jade', {invalid: true});
-        }
-    })
+    //app.get('/register', function (req, res) {
+    //    res.render('register.jade');
+    //});
+    //
+    //app.post('/register', function (req, res, next) {
+    //    //var email = cleanString(req.params('email'));
+    //    //var pass = cleanString(req.params('pass'));
+    //    //TODO add cleanString
+    //    var email = req.body.email.toLowerCase();
+    //    var pass = req.body.pass;
+    //    if (!(email && pass)) {
+    //        return invalid();
+    //    }
+    //
+    //    User.findById(email, function (err, user) {
+    //        if (err) return next(err);
+    //
+    //        if (user) {
+    //            return res.render('register.jade', {exists: true});
+    //        }
+    //
+    //        crypto.randomBytes(16, function (err, bytes) {
+    //            if (err) return next(err);
+    //
+    //            var user = {_id: email};
+    //            user.salt = bytes.toString('utf8');
+    //            user.hash = hash(pass, user.salt);
+    //
+    //            User.create(user, function (err, newUser) {
+    //                if (err) {
+    //                    if (err instanceof mongoose.Error.ValidationError) {
+    //                        return invalid();
+    //                    }
+    //                    return next(err);
+    //                }
+    //
+    //                isLoggedIn = true;
+    //                user = email;
+    //                member = email;
+    //                req.session.user = user;
+    //                console.log('Created user: %s', email);
+    //                return res.redirect('/');
+    //            })
+    //        })
+    //    })
+    //    function invalid() {
+    //        return res.render('register.jade', {invalid: true});
+    //    }
+    //})
 
 }
