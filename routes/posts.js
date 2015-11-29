@@ -69,7 +69,7 @@ module.exports = function (app) {
             if(err) return next(err);
 
             // Validate logged in user who authored this post
-            if(post.author != req.session.user._id) {
+            if(post.author != req.session.user) {
                 return res.send(403);
             }
 
