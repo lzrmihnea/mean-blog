@@ -10,9 +10,7 @@ var routes = require('./routes/index');
 var middleware = require('./middleware/index');
 var mongoose = require('mongoose');
 
-const readWriteUser_MongoLab = 'mongodb://readwrite-user:ReadWrite-Password0@ds059634.mongolab.com:59634/croc-blog';
-
-mongoose.connect(readWriteUser_MongoLab, function (err) {
+mongoose.connect(process.env.MONGOLAB_URI, function (err) {
     if (err) throw err;
 
     var app = express();

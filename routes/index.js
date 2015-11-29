@@ -9,7 +9,7 @@ var User = mongoose.model('User');
 module.exports = function (app) {
 
     // home page
-    app.get('/', function (req, res, next) {
+    app.get('/', function (req, res) {
 
         var postsFromLastWeekQuery = {
             $where: function () {
@@ -20,8 +20,13 @@ module.exports = function (app) {
 
         BlogPost.find(postsFromLastWeekQuery).sort({created: -1}).limit(10).exec(function (err, posts) {
             if (err) return next(err);
-            res.render('home.jade', {posts: posts});
-        })
+
+            var foundError = req.session.foundError;
+            req.session.foundError = null;
+
+            res.render('home.jade', {posts: posts, err: foundError});
+        });
+
     });
 
     //login/logout routes

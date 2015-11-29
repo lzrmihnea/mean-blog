@@ -23,9 +23,8 @@ module.exports = function (app) {
 
     // Expose session to views
     app.use(function (req, res, next) {
-        if (req.user) {
-            req.locals.isLoggedIn = req.session.isLoggedIn;
-            req.locals.member = req.session.member;
+        if (req.session.isLoggedIn && req.session.user) {
+            res.locals.isLoggedIn = req.session.isLoggedIn;
         }
         next();
     })

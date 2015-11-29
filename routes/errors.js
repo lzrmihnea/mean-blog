@@ -7,12 +7,14 @@ module.exports = function(app) {
         res.status(404);
 
         if(req.accepts('html')) {
-            return res.status(200).send("<h2> I'm sorry, I couldn't find that page.</h2>");
+            //return res.status(200).send("<h2> I'm sorry, I couldn't find that page.</h2>");
+            req.session.foundError = "That page was not found.";
+            return res.status(200).redirect('/');
         }
 
         if(req.accepts('json')) {
             return res.json({error: '' +
-            'ot found'});
+            'not found'});
         }
 
         // default response type

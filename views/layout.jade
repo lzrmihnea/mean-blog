@@ -5,18 +5,17 @@ html
             include ../css/style1.css
         title= pageTitle
 body
-    header
-    h1= pageTitle
-    section.login
-        ul
-            span
-                a(href='/') This week
-                | &#09 &#149 &#09
-                a(href='/archive') Archive
-            if (isLoggedIn == true)
-                | &#09 &#149 &#09
-                a(href='/create') New post
-                | &#09 &#149 &#09
-                a(href="/logout") Logout
-    section.content
+    ul
+        span
+            a(href='/') This week
+            | &#09 &#149 &#09
+            a(href='/archive') Archive
+        if (isLoggedIn == true)
+            | &#09 &#149 &#09
+            a(href='/create') New post
+            | &#09 &#149 &#09
+            a(href="/logout") Logout
+    if(err)
+        ul#errors
+            | #{err}
     block content

@@ -3,8 +3,8 @@
  */
 
 module.exports = function isLoggedIn(req, res, next) {
-    if(!(req.session && member)) {
-        return res.redirect('/login');
+    if(!(req.session.isLoggedIn && req.session.user)) {
+        return res.redirect('/');
     }
     next();
 }

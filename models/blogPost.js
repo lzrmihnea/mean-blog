@@ -16,6 +16,7 @@ var schema = mongoose.Schema({
     author: {type: String, ref: 'User'}
 });
 
+// Used directly in jade calls
 schema.virtual('formattedDate').get(function () {
     return moment(this.created).format('ddd, Do MMM YYYY');
 });
@@ -24,6 +25,7 @@ schema.statics.findComments = function (id, callback) {
     return this.model('Comment').find({post: id}, callback);
 }
 
+// Used in JS computations
 schema.methods.getFormattedMonth= function () {
     return moment(this.created).format('MMM');
 }

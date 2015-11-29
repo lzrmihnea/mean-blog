@@ -39,9 +39,8 @@ module.exports = function (app) {
                 return invalid();
             }
 
-            isLoggedIn = true;
-            member = email;
-            req.session.user = user;
+            req.session.isLoggedIn = true;
+            req.session.user = email;
             console.log('Logged in user: %s', email);
             return res.redirect('/');
         })
@@ -50,8 +49,8 @@ module.exports = function (app) {
         }
     })
     app.get('/logout', function (req, res) {
-        isLoggedIn = false;
-        user = null;
+        req.session.isLoggedIn = false;
+        req.session.user = null;
         return res.redirect('/');
     });
     //app.get('/register', function (req, res) {
@@ -90,10 +89,8 @@ module.exports = function (app) {
     //                    return next(err);
     //                }
     //
-    //                isLoggedIn = true;
-    //                user = email;
-    //                member = email;
-    //                req.session.user = user;
+    //                req.session.isLoggedIn = true;
+    //                req.session.user = email;
     //                console.log('Created user: %s', email);
     //                return res.redirect('/');
     //            })
