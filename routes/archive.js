@@ -14,7 +14,6 @@ module.exports = function (app) {
                 for (var x = 0; x < posts.length; x++) {
                     fillTree(posts[x]);
                 }
-                console.log(tree1);
             }
 
             if (err) return next(err);

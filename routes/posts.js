@@ -84,8 +84,6 @@ module.exports = function (app) {
 
     // UPDATE
     app.get("/a/edit/:id", loggedIn, function(req,res,next){
-        //loggedIn(req, res, next);
-        console.log('passed');
         res.render('post/create.jade',{
             post: BlogPost.findById(req.params.id)
         })
