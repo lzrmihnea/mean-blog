@@ -19,9 +19,13 @@ block content
             #post_body
                 p !{post.body}
             p &nbsp
+            p &nbsp
                 span
                     form(method='post', action="/a/comment/"+post.id)
-                        textarea(name='commentText')
+                        input#commentAuthor(name="commentAuthor", placeholder="Your name, please", autocomplete='off')
+                        p
+                            textarea(name='commentText', rows="5", cols="50")
+                        div(class="g-recaptcha", data-sitekey="6LcvLBMTAAAAAMYzIpD6MKtHW2Sh8E-ivgR1aSjL")
                         input(type='submit', value='Comment')
             each comment in comments
                 li

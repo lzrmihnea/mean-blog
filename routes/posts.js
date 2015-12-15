@@ -98,7 +98,7 @@ module.exports = function (app) {
     })
 
     // COMMENTS
-    app.post("/a/comment/:id", loggedIn, function(req, res, next) {
+    app.post("/a/comment/:id", function(req, res, next) {
         var id= req.params.id;
         var text = req.body.commentText;
         var author = req.session.user;
