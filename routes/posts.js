@@ -6,6 +6,10 @@ var mongoose = require('mongoose');
 var BlogPost = require('./../models/blogPost.js');
 var Comment = require('./../models/comment.js');
 var loggedIn = require('../middleware/loggedIn');
+var Recaptcha = require('recaptcha').Recaptcha;
+var https = require('https');
+
+var PRIVATE_KEY = process.env.GOOGLE_RECAPTCHA_KEY_PRIVATE;
 
 //Now, this call won't fail because BlogPost has been added as a schema.
 mongoose.model('BlogPost');
@@ -98,19 +102,75 @@ module.exports = function (app) {
     })
 
     // COMMENTS
-    app.post("/a/comment/:id", function(req, res, next) {
+    app.post("/a/:id", function(req, res, next) {
         var id= req.params.id;
         var text = req.body.commentText;
-        var author = req.session.user;
+        var author = req.body.commentAuthor;
 
-        Comment.create({
-            post: id,
-            text: text,
-            author: author},
-            function(err,comment){
-            if(err) return next(err);});
+        var query = BlogPost.findById(id).populate('author');
 
-        // TODO probably want to do this all with xhr
-        res.redirect("/a/"+id);
+        query.exec(function(err,post) {
+            if (err) return next(err);
+
+            if (!post) return next(); //404
+
+            verifyRecaptcha(req.body["g-recaptcha-response"], function(success) {
+
+                var validationErrorMessages = validateComment(success);
+                if (validationErrorMessages.length > 0) {
+                    var promise = BlogPost.findComments(id).sort('created').select('-_id').exec();
+                    res.render('post/view.jade', {post: post, comments: promise, commentErrorMessages:validationErrorMessages});
+                } else {
+                    // TODO: take them back to the previous page
+                    // and for the love of everyone, restore their inputs
+                    Comment.create({
+                            post: id,
+                            text: text,
+                            author: author},
+                        function(err,comment){
+                            if(err) return next(err);});
+                    var promise = BlogPost.findComments(id).sort('created').select('-_id').exec();
+                    res.render('post/view.jade', {post: post, comments: promise});
+                }
+            });
         });
+
+        function validateComment(success) {
+            var validationErrorMessages = new Array();
+            if (isEmpty(author)) {
+                validationErrorMessages.push({message: "Can't have anyone posting without a name"});
+            }
+            if (isEmpty(text)) {
+                validationErrorMessages.push({message: "A comment is mandatory"});
+            }
+            if (!success) {
+                validationErrorMessages.push({message: "Human confirmation is neccessary"})
+            }
+            return validationErrorMessages;
+        }
+
+        function isEmpty(str) {
+            return (!str || 0 === str.length  || /^\s*$/.test(str) || str.length === 0 || !str.trim());
+        }
+    });
+
+
+
+// Helper function to make API call to recatpcha and check response
+    function verifyRecaptcha(key, callback) {
+        https.get("https://www.google.com/recaptcha/api/siteverify?secret=" + PRIVATE_KEY + "&response=" + key, function(res) {
+            var data = "";
+            res.on('data', function (chunk) {
+                data += chunk.toString();
+            });
+            res.on('end', function() {
+                try {
+                    var parsedData = JSON.parse(data);
+                    callback(parsedData.success);
+                } catch (e) {
+                    callback(false);
+                }
+            });
+        });
+    }
 };
