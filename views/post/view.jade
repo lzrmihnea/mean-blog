@@ -26,9 +26,11 @@ block content
                             | ! #{errorMessage.message}
                             p
                     form(method='post', action="/a/"+post.id)
-                        input#commentAuthor(name="commentAuthor", placeholder="Your name, please", autocomplete='off')
+                        input#commentAuthor(name="commentAuthor", placeholder="Your name, please", autocomplete='on')
                         p
                             textarea(name='commentText', rows="5", cols="50")
+                                if(commentText && commentText.length)
+                                    | #{commentText}
                         div(class="g-recaptcha", data-sitekey="6LcvLBMTAAAAAMYzIpD6MKtHW2Sh8E-ivgR1aSjL")
                         input(type='submit', value='Comment')
             each comment in comments

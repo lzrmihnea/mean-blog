@@ -119,7 +119,7 @@ module.exports = function (app) {
                 var validationErrorMessages = validateComment(success);
                 if (validationErrorMessages.length > 0) {
                     var promise = BlogPost.findComments(id).sort('created').select('-_id').exec();
-                    res.render('post/view.jade', {post: post, comments: promise, commentErrorMessages:validationErrorMessages});
+                    res.render('post/view.jade', {post: post, comments: promise, commentErrorMessages:validationErrorMessages, commentText:text});
                 } else {
                     // TODO: take them back to the previous page
                     // and for the love of everyone, restore their inputs
