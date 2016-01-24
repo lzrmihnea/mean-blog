@@ -5,6 +5,12 @@
   "engines": {
     "node": "4.1.2"
   },
+  "repository" :
+  { "type" : "git"
+  , "url" : "https://github.com/lzrmihnea/mean-blog.git"
+  },
+  "license":
+  { "license": "UNLICENSED"},
   "scripts": {
     "start": "node app0.js"
   },
@@ -26,6 +32,7 @@
     "mongoose": "*",
     "mongoose-lifecycle": "*",
     "morgan": "1.6.1",
+    "nodemailer": "^1.11.0",
     "recaptcha": "1.2.1",
     "request": "2.67.0",
     "serve-favicon": "2.3.0",
