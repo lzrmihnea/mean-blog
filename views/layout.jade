@@ -4,7 +4,7 @@ html
         style
             include ../css/style1.css
         script(src='https://www.google.com/recaptcha/api.js')
-        title= pageTitle
+        title= title == null ? "Croc's space" : title+" | Croc's space"
 body
     ul
         span

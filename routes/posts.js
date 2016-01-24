@@ -60,7 +60,7 @@ module.exports = function (app) {
 
             if(!post) return next(); //404
 
-            res.render('post/view.jade', {post:post, comments:promise});
+            res.render('post/view.jade', {post:post, comments:promise, title:post.title});
         });
     });
 
@@ -130,7 +130,7 @@ module.exports = function (app) {
                         function(err,comment){
                             if(err) return next(err);});
                     var promise = BlogPost.findComments(id).sort('created').select('-_id').exec();
-                    res.render('post/view.jade', {post: post, comments: promise});
+                    res.render('post/view.jade', {post: post, comments: promise, title:post.title});
                 }
             });
         });
