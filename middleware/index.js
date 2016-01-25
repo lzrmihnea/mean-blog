@@ -6,6 +6,7 @@ var morgan = require('morgan');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var favicon = require('serve-favicon');
 
 module.exports = function (app) {
     app.use(morgan('dev'));
@@ -19,6 +20,8 @@ module.exports = function (app) {
     }));
     app.use(cookieParser());
     app.use(session({secret: 'building a blog', saveUninitialized: true, resave: true}));
+    app.use(favicon(__dirname+'/../css/favicon.ico'));
+
 
 
     // Expose session to views
