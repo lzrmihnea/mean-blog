@@ -70,7 +70,7 @@ var BlogPost = mongoose.model('BlogPost', schema);
 // Handle events
 BlogPost.on('afterInsert', function (post) {
     // fake tweet this
-    var url = "http://localhost:3000/posts/"
+    var url = "http://localhost:3000/a/"
     console.log("Read my new blog post! %s%s", url, post.id);
 })
 
