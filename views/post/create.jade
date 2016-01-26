@@ -6,7 +6,9 @@ block content
 
     form#createPost(method="post", action=post ? '/a/edit/' + post.id : '/create')
         ul
-            input#title(name="title", placeholder="Title", value=post ? post.title : '', autocomplete='off')
+            span
+                input#title(name="title", placeholder="Title", value=post ? post.title : '', autocomplete='off', size=50)
+                input#tags(name="tags", placeholder="Tags", value=post ? post.tags : '', autocomplete='off', size=30)
             #wysiwyg_cp(style="padding:8px; width:700px")
                 input(type="button", onClick="iBold();", value="B")
                 input(type="button", onClick="iUnderline();", value="U")

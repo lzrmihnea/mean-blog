@@ -3,6 +3,7 @@
  */
 
 var mongoose = require('mongoose');
+var BlogPostTag = require('./../models/blogPostTag.js');
 var BlogPost = require('./../models/blogPost.js');
 var Comment = require('./../models/comment.js');
 var loggedIn = require('../middleware/loggedIn');
@@ -24,12 +25,20 @@ module.exports = function (app) {
 
     app.post("/create", loggedIn, function (req, res, next) {
         var body = req.body.blogPostBody;
+
         var title = req.body.title;
         var titleWithoutDashes = title.split("-").join("");
         var titleWithoutWhitespaces = titleWithoutDashes.split(/\s+?/).join("-");
         console.log(titleWithoutWhitespaces);
         var id = titleWithoutWhitespaces;
+
         var user = req.session.user;
+
+        var tagString = req.body.tags;
+        var tags = tagString.replace(/\s+/g, '').split(',');
+        tags.forEach(function(tag){
+            console.log(tag + " ");
+        });
 
         BlogPost.create({
             _id: id,

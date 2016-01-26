@@ -4,7 +4,8 @@
 
 var mongoose = require('mongoose');
 require('express-mongoose');
-var User = require('mongoose').model('User');
+var User = mongoose.model('User');
+var BlogPostTag = mongoose.model('BlogPostTag');
 var moment = require('moment');
 
 // Optional: var schema = new mongoose.Schema({
@@ -13,7 +14,8 @@ var schema = mongoose.Schema({
     title: {type: String, trim: true},
     created: {type: Date, default: Date.now},
     body: String,
-    author: {type: String, ref: 'User'}
+    author: {type: String, ref: 'User'},
+    tags: [{type: String, ref: 'BlogPostTag'}]
 });
 
 // Used directly in jade calls
