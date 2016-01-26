@@ -24,19 +24,25 @@ module.exports = function (app) {
     });
 
     app.post("/create", loggedIn, function (req, res, next) {
-        var body = req.body.blogPostBody;
+        const WHITESPACE = /\s+/g;
+        const COMMA = ',';
 
+        var body = req.body.blogPostBody;
         var title = req.body.title;
         var titleWithoutDashes = title.split("-").join("");
         var titleWithoutWhitespaces = titleWithoutDashes.split(/\s+?/).join("-");
         console.log(titleWithoutWhitespaces);
-        var id = titleWithoutWhitespaces;
 
+        var id = titleWithoutWhitespaces;
         var user = req.session.user;
 
         var tagString = req.body.tags;
-        var tags = tagString.replace(/\s+/g, '').split(',');
-        tags.forEach(function(tag){
+        var tags = tagString.replace(WHITESPACE, '').split(COMMA);
+        var tags = tags.filter(function (value, index, self) {
+            return self.indexOf(value) === index;
+        });
+
+        tags.forEach(function (tag) {
             console.log(tag + " ");
         });
 
@@ -44,10 +50,11 @@ module.exports = function (app) {
             _id: id,
             body: body,
             title: title,
-            author: user
+            author: user,
+            tags: tags
         }, function (err, post) {
             if (err) {
-                    return res.render('post/create.jade', {errors:err});
+                return res.render('post/create.jade', {errors: err});
             } else {
                 res.redirect('/');
             }
@@ -55,39 +62,39 @@ module.exports = function (app) {
     });
 
     // read blog posts
-    app.get("/a/:id", function(req, res, next) {
+    app.get("/a/:id", function (req, res, next) {
 
-        var id=req.params.id;
+        var id = req.params.id;
 
         // TODO check out Promises A+ or something
         var promise = BlogPost.findComments(id).sort('created').select('-_id').exec();
 
         var query = BlogPost.findById(id).populate('author');
 
-        query.exec(function(err,post) {
-            if(err) return next(err);
+        query.exec(function (err, post) {
+            if (err) return next(err);
 
-            if(!post) return next(); //404
+            if (!post) return next(); //404
 
-            res.render('post/view.jade', {post:post, comments:promise, title:post.title});
+            res.render('post/view.jade', {post: post, comments: promise, title: post.title});
         });
     });
 
     // DELETE
     // TODO Make a small popup appear after clicking on delete delete
-    app.get("/a/remove/:id", loggedIn, function(req, res, next){
+    app.get("/a/remove/:id", loggedIn, function (req, res, next) {
         var id = req.params.id;
 
-        BlogPost.findOne({_id:id}, function(err,post){
-            if(err) return next(err);
+        BlogPost.findOne({_id: id}, function (err, post) {
+            if (err) return next(err);
 
             // Validate logged in user who authored this post
-            if(post.author != req.session.user) {
+            if (post.author != req.session.user) {
                 return res.send(403);
             }
 
-            post.remove(function(err){
-                if(err) return next(err);
+            post.remove(function (err) {
+                if (err) return next(err);
 
                 // TODO display a confirmation message to user
                 res.redirect('/');
@@ -96,50 +103,57 @@ module.exports = function (app) {
     });
 
     // UPDATE
-    app.get("/a/edit/:id", loggedIn, function(req,res,next){
-        res.render('post/create.jade',{
+    app.get("/a/edit/:id", loggedIn, function (req, res, next) {
+        res.render('post/create.jade', {
             post: BlogPost.findById(req.params.id)
         })
     });
 
-    app.post("/a/edit/:id", loggedIn, function(req,res,next){
-        BlogPost.edit(req, function(err){
-            if(err) return next(err);
+    app.post("/a/edit/:id", loggedIn, function (req, res, next) {
+        BlogPost.edit(req, function (err) {
+            if (err) return next(err);
             //res.redirect("/a/"+req.params.id);
             res.redirect("/");
         })
     })
 
     // COMMENTS
-    app.post("/a/:id", function(req, res, next) {
-        var id= req.params.id;
+    app.post("/a/:id", function (req, res, next) {
+        var id = req.params.id;
         var text = req.body.commentText;
         var author = req.body.commentAuthor;
 
         var query = BlogPost.findById(id).populate('author');
 
-        query.exec(function(err,post) {
+        query.exec(function (err, post) {
             if (err) return next(err);
 
             if (!post) return next(); //404
 
-            verifyRecaptcha(req.body["g-recaptcha-response"], function(success) {
+            verifyRecaptcha(req.body["g-recaptcha-response"], function (success) {
 
                 var validationErrorMessages = validateComment(success);
                 if (validationErrorMessages.length > 0) {
                     var promise = BlogPost.findComments(id).sort('created').select('-_id').exec();
-                    res.render('post/view.jade', {post: post, comments: promise, commentErrorMessages:validationErrorMessages, commentText:text});
+                    res.render('post/view.jade', {
+                        post: post,
+                        comments: promise,
+                        commentErrorMessages: validationErrorMessages,
+                        commentText: text
+                    });
                 } else {
                     // TODO: take them back to the previous page
                     // and for the love of everyone, restore their inputs
                     Comment.create({
                             post: id,
                             text: text,
-                            author: author},
-                        function(err,comment){
-                            if(err) return next(err);});
+                            author: author
+                        },
+                        function (err, comment) {
+                            if (err) return next(err);
+                        });
                     var promise = BlogPost.findComments(id).sort('created').select('-_id').exec();
-                    res.render('post/view.jade', {post: post, comments: promise, title:post.title});
+                    res.render('post/view.jade', {post: post, comments: promise, title: post.title});
                 }
             });
         });
@@ -159,20 +173,19 @@ module.exports = function (app) {
         }
 
         function isEmpty(str) {
-            return (!str || 0 === str.length  || /^\s*$/.test(str) || str.length === 0 || !str.trim());
+            return (!str || 0 === str.length || /^\s*$/.test(str) || str.length === 0 || !str.trim());
         }
     });
 
 
-
 // Helper function to make API call to recatpcha and check response
     function verifyRecaptcha(key, callback) {
-        https.get("https://www.google.com/recaptcha/api/siteverify?secret=" + PRIVATE_KEY + "&response=" + key, function(res) {
+        https.get("https://www.google.com/recaptcha/api/siteverify?secret=" + PRIVATE_KEY + "&response=" + key, function (res) {
             var data = "";
             res.on('data', function (chunk) {
                 data += chunk.toString();
             });
-            res.on('end', function() {
+            res.on('end', function () {
                 try {
                     var parsedData = JSON.parse(data);
                     callback(parsedData.success);
