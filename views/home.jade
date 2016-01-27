@@ -6,7 +6,7 @@ block content
    else
       ul.posts
          each post in posts
-            #post_title(style="display:inline")
+            #postTitle(style="display:inline")
                 a(href='/a/#{post.id}') #{post.title}
             div#post_creation_date(style="display:inline")
                 | &nbspon #{post.formattedDate}
@@ -17,6 +17,6 @@ block content
                     span  &#09 | &#09
                     span
                         a(href='/a/remove/#{post.id}') Remove
-            div#post_body
+            div#postBody
                 p !{post.body}
                 p &nbsp

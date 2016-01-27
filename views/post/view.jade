@@ -4,10 +4,9 @@ extends ../layout
 block content
     ul
         div(class="large-12 columns")
-            h2(style="display:inline")
+            h2#postTitle
                 a(href='/a/#{post.id}') #{post.title}
-            | &nbsp
-            div#post_creation_date(style="display:inline")
+            div#postInfo
                 | on #{post.formattedDate} by #{post.author._id}
                 if isLoggedIn
                     span &#09 | &#09
@@ -20,7 +19,7 @@ block content
                 p
                     for tag in post.tags
                         span #{tag}&nbsp
-            div#post_body
+            div#postBody
                 p !{post.body}
             p &nbsp
                 // Comments

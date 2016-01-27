@@ -11,21 +11,13 @@ img {
     margin-left: 4%;
 }
 
-#post_title {
     font-family: "proxima-nova", Helvetica, sans-serif;
     font-size: 2.2em;
     color: #333;
-    font-weight: normal;
-    margin-top: 1em;
-    line-height: 1.3em;
 }
 #postTags {
-    font-size: 1em;
-    font-weight: lighter;
 }
 
-#post_body {
-    margin-left: 1em;
 }
 
 #archiveTreeYearBranch {
@@ -58,14 +50,6 @@ img {
     a {
         color: #333;
         text-decoration: none;
-    }
-
-    #post_creation_date {
-        display: inline;
-    }
-
-    #post_creation_date {
-        display: inline;
     }
 }
 
