@@ -46,16 +46,31 @@ module.exports = function (app) {
             console.log(tag + " ");
         });
 
-        BlogPost.create({
+        var newBlogPost = {
             _id: id,
             body: body,
             title: title,
             author: user,
             tags: tags
-        }, function (err, post) {
+        };
+        BlogPost.create(newBlogPost, function (err, post) {
             if (err) {
                 return res.render('post/create.jade', {errors: err});
             } else {
+
+                // Create each tag
+                post.tags.forEach(function(tag){
+                    BlogPostTag.update({_id: tag}, {$inc: {numberOfPosts: 1}}, {
+                        upsert: true,
+                        setDefaultsOnInsert: true
+                    }, function (err, updatedOrInsertedTag) {
+                        if (err) {
+                            return next(err);
+                        }
+                        console.log(updatedOrInsertedTag);
+                    });
+                });
+
                 res.redirect('/');
             }
         });
@@ -95,10 +110,16 @@ module.exports = function (app) {
 
             post.remove(function (err) {
                 if (err) return next(err);
-
+                //Removing tag
+                post.tags.forEach(function (tag) {
+                    BlogPostTag.update({_id: tag}, {$inc: {numberOfPosts: -1}}, function (err) {
+                        if (err) return next(err);
+                    });
+                });
                 // TODO display a confirmation message to user
+                console.log("Blogpost deleted!");
                 res.redirect('/');
-            })
+            });
         })
     });
 
@@ -112,7 +133,6 @@ module.exports = function (app) {
     app.post("/a/edit/:id", loggedIn, function (req, res, next) {
         BlogPost.edit(req, function (err) {
             if (err) return next(err);
-            //res.redirect("/a/"+req.params.id);
             res.redirect("/");
         })
     })

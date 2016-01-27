@@ -2,6 +2,11 @@ img {
     max-width: 100%;
 }
 
+#headerLinks {
+    font-size: large;
+    vertical-align: middle;
+}
+
 #loginFormTitle {
     margin-left: 4%;
 }

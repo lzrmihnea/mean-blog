@@ -4,18 +4,20 @@ html
         style
             include ../css/style1.css
         script(src='https://www.google.com/recaptcha/api.js')
-        title= title == null ? "Croc's space" : title+" | Croc's space"
+        title= title == null ? "croc's space" : title+" | croc's space"
 body
     ul
-        span
+        span#headerLinks
             a(href='/') This week
             | &#09 &#149 &#09
             a(href='/archive') Archive
-        if (isLoggedIn == true)
+            if (isLoggedIn == true)
+                | &#09 &#149 &#09
+                a(href='/create') New post
+                | &#09 &#149 &#09
+                a(href="/logout") Logout
             | &#09 &#149 &#09
-            a(href='/create') New post
-            | &#09 &#149 &#09
-            a(href="/logout") Logout
+            input#tags(name="subscribe", placeholder="Subscribe", autocomplete='off', size=20, sty)
     if(err)
         ul#errors
             | #{err}
