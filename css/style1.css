@@ -2,22 +2,28 @@ img {
     max-width: 100%;
 }
 
-#headerLinks {
-    font-size: large;
-    vertical-align: middle;
-}
-
 #loginFormTitle {
     margin-left: 4%;
 }
 
+#postTitle {
     font-family: "proxima-nova", Helvetica, sans-serif;
     font-size: 2.2em;
     color: #333;
+    font-weight: bold;
+
+    text-align:center;
+}
+#postInfo {
+    text-align:center;
 }
 #postTags {
+    text-align:center;
 }
 
+#postBody {
+    margin-left: 1%;
+    text-align: justify;
 }
 
 #archiveTreeYearBranch {
@@ -57,6 +63,8 @@ img {
 @media (min-device-width: 100px) {
     html {
         font-size: 50px;
+        width:180vh;
+        margin: auto;
     }
 }
 
@@ -64,6 +72,8 @@ img {
 @media (min-device-width: 550px) {
     html {
         font-size: 50px;
+        width:150vh;
+        margin: auto;
     }
 }
 
@@ -71,6 +81,8 @@ img {
 @media (min-device-width: 750px) {
     html {
         font-size: 40px;
+        width:120vh;
+        margin: auto;
     }
 }
 
@@ -78,6 +90,8 @@ img {
 @media (min-device-width: 1000px) {
     html {
         font-size: 30px;
+        width:100vh;
+        margin: auto;
     }
 }
 
@@ -85,5 +99,7 @@ img {
 @media (min-device-width: 1200px) {
     html {
         font-size: 20px;
+        width:80vh;
+        margin: auto;
     }
 }
