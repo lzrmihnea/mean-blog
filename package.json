@@ -1,16 +1,17 @@
 {
-  "name": "mean-tutorial",
-  "description": "A blog with the purpose of continuously learning and self-developing",
+  "name": "croc's space",
+  "description": "Biking, software development, entertainment.",
   "version": "0.0.0",
   "engines": {
     "node": "4.1.2"
   },
-  "repository" :
-  { "type" : "git"
-  , "url" : "https://github.com/lzrmihnea/mean-blog.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lzrmihnea/mean-blog.git"
   },
-  "license":
-  { "license": "UNLICENSED"},
+  "license": {
+    "license": "UNLICENSED"
+  },
   "scripts": {
     "start": "node app0.js"
   },
@@ -18,25 +19,25 @@
     "body-parser": "1.14.1",
     "consolidate": "0.13.1",
     "cookie-parser": "1.4.0",
-    "crypto": "*",
+    "crypto": "0.0.3",
     "debug": "2.2.0",
     "express": "4.13.3",
-    "express-mongoose": "*",
+    "express-mongoose": "0.1.0",
     "express-paginate": "0.1.0",
     "express-session": "1.12.1",
     "https": "1.0.0",
     "jade": "1.11.0",
     "method-override": "2.3.5",
-    "moment": "*",
+    "moment": "2.11.1",
     "mongodb": "2.1.1",
-    "mongoose": "*",
-    "mongoose-lifecycle": "*",
+    "mongoose": "4.3.7",
+    "mongoose-lifecycle": "1.0.0",
     "morgan": "1.6.1",
-    "nodemailer": "^1.11.0",
+    "nodemailer": "1.11.0",
     "recaptcha": "1.2.1",
     "request": "2.67.0",
     "serve-favicon": "2.3.0",
-    "swig": "*"
+    "swig": "1.4.2"
   },
   "main": "app0.js",
   "_comments": {
