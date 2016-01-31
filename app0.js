@@ -23,22 +23,17 @@ mongoose.connect(process.env.MONGOLAB_URI, function (err) {
     }
     app.listen(appPort, function () {
 
-        const SERVER_IP_ADDRESS = '127.0.0.1';
-        const LOCALHOST_LINK = 'http://' + SERVER_IP_ADDRESS + ":" + appPort;
-        const IRINA_LOGHIN = '/irinaloghin';
+    });
 
-        writeInitialConsoleMessage();
+    // SSL validation
+    app.get("/"+process.env.SSL_VALIDATION_TXT_FILE, function (req, res) {
+        // Read the file and print its contents.
+        require('fs').readFile("./"+process.env.SSL_VALIDATION_TXT_FILE, 'utf8', function(err, data) {
+            if (err) throw err;
+            res.write(data);
+            res.end();
+        });
+    });
 
-        function writeInitialConsoleMessage() {
-            addNewlineToConsole();
-            console.log('Blog address: ' + LOCALHOST_LINK);
-            addNewlineToConsole();
-            console.log('Login backdoor: ' + LOCALHOST_LINK + IRINA_LOGHIN);
-            addNewlineToConsole();
-            function addNewlineToConsole() {
-                console.log();
-            }
-        }
-    })
     //mongoose.disconnect();
 });
