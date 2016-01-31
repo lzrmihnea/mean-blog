@@ -25,15 +25,5 @@ mongoose.connect(process.env.MONGOLAB_URI, function (err) {
 
     });
 
-    // SSL validation
-    app.get("/"+process.env.SSL_VALIDATION_TXT_FILE, function (req, res) {
-        // Read the file and print its contents.
-        require('fs').readFile("./"+process.env.SSL_VALIDATION_TXT_FILE, 'utf8', function(err, data) {
-            if (err) throw err;
-            res.write(data);
-            res.end();
-        });
-    });
-
     //mongoose.disconnect();
 });
