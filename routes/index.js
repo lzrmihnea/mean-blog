@@ -32,11 +32,9 @@ module.exports = function (app) {
     // SSL validation
     app.get("/C9AA3311FC272DF9B4B6C1130086576F.txt", function (req, res) {
         const SSL_VALIDATION_TXT_FILE = 'C9AA3311FC272DF9B4B6C1130086576F.txt';
-        console.log("here");
         // Read the file and print its contents.
         require('fs').readFile("./"+SSL_VALIDATION_TXT_FILE, 'utf8', function(err, data) {
             if (err) throw err;
-            console.log(data);
             res.write(data);
             res.end();
         });
