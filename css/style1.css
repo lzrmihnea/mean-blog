@@ -2,6 +2,16 @@ img {
     max-width: 100%;
 }
 
+#subscribeInputField{
+    color:rgba(31, 113, 12, 0.96);
+    font-weight:bold;
+    -webkit-box-shadow:none;
+    box-shadow:none;
+    width:250px;
+    height: 30px;
+    vertical-align: middle;
+}
+
 #loginFormTitle {
     margin-left: 4%;
 }

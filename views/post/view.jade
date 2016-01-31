@@ -7,7 +7,7 @@ block content
             h2#postTitle
                 a(href='/a/#{post.id}') #{post.title}
             div#postInfo
-                | on #{post.formattedDate} by #{post.author._id}
+                p on #{post.formattedDate} by #{post.author._id}
                 if isLoggedIn
                     span &#09 | &#09
                     span
@@ -21,6 +21,8 @@ block content
                         span #{tag}&nbsp
             div#postBody
                 p !{post.body}
+            p &nbsp
+            input#subscribeInputField(name="subscribe", placeholder="Subscribe to our soft-biting news!", autocomplete='off', size=30)
             p &nbsp
                 // Comments
                 span
