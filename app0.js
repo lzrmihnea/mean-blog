@@ -15,6 +15,17 @@ mongoose.connect(process.env.MONGOLAB_URI, function (err) {
     middleware(app);
     routes(app);
 
+    var appPort = process.env.PORT;
+    if (appPort == undefined) {
+        appPort = 5000;
+    }
+    app.listen(appPort, function () {
+
+    });
+
+    const http_port = 80;
+    require('http').createServer(app).listen(http_port, function () {
+        debug("HTTP Server listening on port: %s, in %s mode", http_port, app.get('env'));
     });
 
     const https_port = 443;
