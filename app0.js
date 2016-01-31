@@ -19,23 +19,23 @@ mongoose.connect(process.env.MONGOLAB_URI, function (err) {
     if (appPort == undefined) {
         appPort = 5000;
     }
-    app.listen(appPort, function () {
+    //app.listen(appPort, function () {
+    //
+    //});
+    //
+    //const http_port = 80;
+    //require('http').createServer(app).listen(http_port, function () {
+    //    debug("HTTP Server listening on port: %s, in %s mode", http_port, app.get('env'));
+    //});
 
-    });
-
-    const http_port = 80;
-    require('http').createServer(app).listen(http_port, function () {
-        debug("HTTP Server listening on port: %s, in %s mode", http_port, app.get('env'));
-    });
-
-    const https_port = 443;
+    //const https_port = 443;
     require('https').createServer({
         key: fs.readFileSync("./config/croc.space.key"),
         cert: fs.readFileSync("./config/croc_space.crt"),
         ca: fs.readFileSync("./config/croc_space.ca-bundle"),
         requestCert: true,
         rejectUnauthorized: false
-    }, app).listen(https_port, function () {
-        debug("HTTPS Server listening on port: %s, in %s mode", https_port, app.get('env'));
+    }, app).listen(appPort, function () {
+        debug("HTTPS Server listening on port: %s, in %s mode", appPort, app.get('env'));
     });
 });
