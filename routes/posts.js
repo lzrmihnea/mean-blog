@@ -91,7 +91,9 @@ module.exports = function (app) {
 
             if (!post) return next(); //404
 
-            res.render('post/view.jade', {post: post, comments: promise, title: post.title});
+            var minsToRead = Math.ceil((post.body.split(" ").length)/275);
+
+            res.render('post/view.jade', {post: post, comments: promise, title: post.title, minutesToRead:minsToRead});
         });
     });
 
@@ -135,7 +137,7 @@ module.exports = function (app) {
             if (err) return next(err);
             res.redirect("/");
         })
-    })
+    });
 
     // COMMENTS
     app.post("/a/:id", function (req, res, next) {

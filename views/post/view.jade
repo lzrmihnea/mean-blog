@@ -8,6 +8,7 @@ block content
                 a(href='/a/#{post.id}') #{post.title}
             div#postInfo
                 p on #{post.formattedDate} by #{post.author.name}
+                p #{minutesToRead} minute read
                 if isLoggedIn
                     span &#09 | &#09
                     span
