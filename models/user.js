@@ -14,7 +14,7 @@ var schema = mongoose.Schema({
         //validate:validEmail,
         required:"Please enter email address"
     },
-    name: {first:String, last:String},
+    name: String,
     salt: {type:String, required:true},
     hash: {type:String, required:true},
     created: {type:Date, default:Date.now}
