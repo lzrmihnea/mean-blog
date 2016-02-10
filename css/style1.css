@@ -89,7 +89,7 @@ img {
 @media (min-device-width: 750px) {
     html {
         font-size: 40px;
-        width:90vh;
+        max-width:30em;
         margin: auto;
     }
 }
@@ -98,7 +98,7 @@ img {
 @media (min-device-width: 1000px) {
     html {
         font-size: 30px;
-        width:85vh;
+        max-width:35em;
         margin: auto;
     }
 }
@@ -107,7 +107,7 @@ img {
 @media (min-device-width: 1200px) {
     html {
         font-size: 20px;
-        width:80vh;
+        width:40em;
         margin: auto;
     }
 }
