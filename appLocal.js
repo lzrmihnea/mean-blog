@@ -12,7 +12,7 @@ var mongoose = require('mongoose');
 
 const readOnlyUser_MongoLab = 'mongodb://localhost';
 
-mongoose.connect('mongodb://blog-user:Blog-Password0@ds059634.mongolab.com:59634/croc-blog', function (err) {
+mongoose.connect(readOnlyUser_MongoLab, function (err) {
     if (err) throw err;
 
     var app = express();
