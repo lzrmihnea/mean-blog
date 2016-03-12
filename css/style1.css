@@ -16,6 +16,11 @@ img {
     margin-left: 4%;
 }
 
+#richTextField {
+    height: 70vh;
+    width: 100%;
+}
+
 #postTitle {
     font-family: "proxima-nova", Helvetica, sans-serif;
     font-size: 2.2em;
