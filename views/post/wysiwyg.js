@@ -41,7 +41,7 @@ function iUnlink() {
 }
 
 function iImage() {
-    var imgSrc = prompt("EnterImageLocation", '');
+    var imgSrc = prompt("EnterImageLocation", "");
     if (imgSrc != null) {
         richTextField.document.execCommand("insertimage", false, imgSrc);
     }
