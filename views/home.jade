@@ -6,9 +6,9 @@ block content
    else
       ul.posts
          each post in posts
-            #postTitle(style="display:inline")
+            h2#postTitle
                 a(href='/a/#{post.id}') #{post.title}
-            div#post_creation_date(style="display:inline")
+            div#postInfo
                 | &nbspon #{post.formattedDate}
                 if isLoggedIn
                     span &#09 | &#09

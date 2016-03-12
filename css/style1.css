@@ -29,6 +29,9 @@ img {
 
     text-align:center;
 }
+#headerLinks {
+alignment: center;
+}
 #postInfo {
     text-align:center;
 }
