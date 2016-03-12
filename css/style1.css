@@ -53,6 +53,7 @@ alignment: center;
     html {
         /*font-family: 'brandon-grotesque', Open Sans, Helvetica, sans-serif;*/
         font-family: "proxima-nova", Helvetica, sans-serif;
+        margin-right: 2%;
     }
 
     a {
