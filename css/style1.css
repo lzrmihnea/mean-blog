@@ -12,37 +12,19 @@ img {
     font-size: 2.2em;
     color: #333;
     font-weight: bold;
-
     text-align:center;
-}
-#headerLinks {
-alignment: center;
 }
 #postInfo {
     text-align:center;
 }
-#postTags {
-    text-align:center;
-}
-
-#archiveTreeYearBranch {
-    margin-top: 1%;
-}
 
 #archiveTreeMonthBranch {
-    margin-top: 1%;
     margin-left: 1%;
 }
 
 #archiveTreePostLeaf {
     margin-left: 2%;
     display:inline;
-    font-size: x-large;
-}
-
-#archiveTreePostLeafDate {
-    display:inline;
-    color:dimgray;
 }
 
 @media all {
