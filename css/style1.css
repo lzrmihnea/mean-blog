@@ -1,7 +1,3 @@
-img {
-    max-width: 100%;
-}
-
 #richTextField {
     height: 70vh;
     width: 100%;
@@ -28,10 +24,9 @@ img {
 }
 
 @media all {
-    html {
-        /*font-family: 'brandon-grotesque', Open Sans, Helvetica, sans-serif;*/
+    #blogBody {
         font-family: "proxima-nova", Helvetica, sans-serif;
-        margin-right: 2%;
+        text-align: left;
     }
 
     a {
@@ -45,6 +40,19 @@ img {
     html {
         font-size: 50px;
     }
+
+    #blogBody {
+        margin-right:2%;
+    }
+
+    #postBody {
+        text-align: left;
+    }
+
+    #postBody img {
+        max-width: 100vw;
+        max-height: 100vh;
+    }
 }
 
 /* Larger than phablet (also point when grid becomes active) */
@@ -52,31 +60,71 @@ img {
     html {
         font-size: 50px;
     }
+
+    #blogBody {
+        margin-right: 2%;
+    }
+
+    #postBody {
+        text-align: left;
+    }
+
+    #postBody img {
+        max-width: 100vw;
+        max-height: 100vh;
+    }
 }
 
 /* Larger than tablet */
 @media (min-device-width: 750px) {
     html {
-        font-size: 40px;
-        max-width:30em;
-        margin: auto;
+        font-size: 35px;
+    }
+
+    #blogBody {
+        max-width: 30em;
+        width: 90%;
+        margin-right: 2%;
     }
 
     #postBody {
         text-align: justify;
+    }
+
+    #postBody img {
+        max-width: 100vw;
+        max-height: 100vh;
     }
 }
 
 /* Larger than desktop */
 @media (min-device-width: 1000px) {
     html {
-        font-size: 30px;
-        max-width:35em;
+        font-size: 25px;
+    }
+
+    #blogBody {
+        max-width: 35em;
+        width: 90%;
         margin: auto;
     }
 
     #postBody {
         text-align: justify;
+    }
+
+    #postBody img {
+        max-width: 100vw;
+        max-height: 100vh;
+
+        float:left;
+
+        margin-left: 50%;
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        -o-transform: translateX(-50%);
+        transform: translateX(-50%);
     }
 }
 
@@ -84,11 +132,30 @@ img {
 @media (min-device-width: 1200px) {
     html {
         font-size: 20px;
-        width:40em;
+    }
+
+    #blogBody {
+        max-width: 35em;
+        width: 90%;
         margin: auto;
     }
 
     #postBody {
         text-align: justify;
     }
+
+    #postBody img {
+        max-width: 100vw;
+        max-height: 100vh;
+
+        float:left;
+
+        margin-left: 50%;
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        -o-transform: translateX(-50%);
+        transform: translateX(-50%);
+    }
+
 }
