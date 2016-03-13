@@ -79,6 +79,10 @@ alignment: center;
         max-width:30em;
         margin: auto;
     }
+
+    #postBody {
+        text-align: justify;
+    }
 }
 
 /* Larger than desktop */
@@ -88,6 +92,10 @@ alignment: center;
         max-width:35em;
         margin: auto;
     }
+
+    #postBody {
+        text-align: justify;
+    }
 }
 
 /* Larger than Desktop HD */
@@ -96,5 +104,9 @@ alignment: center;
         font-size: 20px;
         width:40em;
         margin: auto;
+    }
+
+    #postBody {
+        text-align: justify;
     }
 }
