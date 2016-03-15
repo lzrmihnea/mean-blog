@@ -34,7 +34,9 @@ function iOrderedList() {
 
 function iLink() {
     var linkURL = prompt("Enter URL:", "http://");
-    richTextField.document.execCommand("CreateLink", false, linkURL);
+    var sText = richTextField.document.getSelection();
+    richTextField.document.execCommand('insertHTML', false, '<a href="' + linkURL + '" target="_blank">' + sText + '</a>');
+
 }
 function iUnlink() {
     richTextField.document.execCommand("Unlink", false, null);
