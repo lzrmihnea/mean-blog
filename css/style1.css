@@ -38,7 +38,7 @@
 /* Larger than mobile */
 @media (min-device-width: 100px) {
     html {
-        font-size: 45px;
+        font-size: 1em;
     }
 
     #blogBody {
@@ -60,7 +60,6 @@
 /* Larger than phablet (also point when grid becomes active) */
 @media (min-device-width: 550px) {
     html {
-        font-size: 40px;
     }
 
     #blogBody {
@@ -80,7 +79,6 @@
 /* Larger than tablet */
 @media (min-device-width: 750px) {
     html {
-        font-size: 32px;
     }
 
     #blogBody {
@@ -102,7 +100,6 @@
 /* Larger than desktop */
 @media (min-device-width: 1000px) {
     html {
-        font-size: 23px;
     }
 
     #blogBody {
@@ -134,7 +131,6 @@
 /* Larger than Desktop HD */
 @media (min-device-width: 1200px) {
     html {
-        font-size: 18px;
     }
 
     #blogBody {
