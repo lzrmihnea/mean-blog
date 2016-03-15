@@ -1,3 +1,7 @@
+html {
+    font-size: 1em;
+}
+
 #richTextField {
     height: 70vh;
     width: 100%;
@@ -26,9 +30,7 @@
 }
 
 @media all {
-    html {
-        font-size: 1em;
-    }
+
     #blogBody {
         font-family: Circular, Georgia, serif; !important;
         text-align: center;
