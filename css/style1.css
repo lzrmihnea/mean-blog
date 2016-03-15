@@ -13,7 +13,9 @@
 #postInfo {
     text-align:center;
 }
-
+#archiveTree {
+    text-align: left;
+}
 #archiveTreeMonthBranch {
     margin-left: 1%;
 }
@@ -24,6 +26,9 @@
 }
 
 @media all {
+    html {
+        font-size: 1em;
+    }
     #blogBody {
         font-family: Circular, Georgia, serif; !important;
         text-align: center;
@@ -37,9 +42,6 @@
 
 /* Larger than mobile */
 @media (min-device-width: 100px) {
-    html {
-        font-size: 1em;
-    }
 
     #blogBody {
         margin-right:2%;
