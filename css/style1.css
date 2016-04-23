@@ -40,6 +40,10 @@ html {
         text-decoration: underline;
     }
 
+    #postBody {
+        line-height: 1.8em;
+    }
+
     a {
         color: #333;
         text-decoration: none;
@@ -118,7 +122,6 @@ html {
 
     #postBody {
         text-align: justify;
-        line-height: 1.6em;
     }
 
     #postBody img {
@@ -149,7 +152,6 @@ html {
 
     #postBody {
         text-align: justify;
-        line-height: 1.8em;
     }
 
     #postBody img {
