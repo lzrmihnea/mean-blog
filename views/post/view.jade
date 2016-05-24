@@ -33,7 +33,7 @@ block content
                             | ! #{errorMessage.message}
                             p
                     form(method='post', action="/a/"+post.id)
-                        input#commentAuthor(name="commentAuthor", placeholder="Your name, please", autocomplete='on')
+                        input#commentAuthor(name="commentAuthor", placeholder="Your name, if you'd like to comment", autocomplete='on')
                         p
                             textarea(name='commentText', rows="5", cols="50")
                                 if(commentText && commentText.length)
