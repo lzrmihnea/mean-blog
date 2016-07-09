@@ -11,27 +11,29 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1;
-    var AuthorsComponent;
+    var ContactComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             }],
         execute: function() {
-            AuthorsComponent = (function () {
-                function AuthorsComponent() {
+            ContactComponent = (function () {
+                function ContactComponent() {
+                    this.contact = {};
                 }
-                AuthorsComponent = __decorate([
+                ContactComponent = __decorate([
                     core_1.Component({
-                        selector: 'authors',
-                        template: "\n   \n\n"
+                        selector: 'contact',
+                        template: "\n            <input [(ngModel)] = \"contact.firstName\" type=\"text\">\n            <div>\n                Phone number: {{contact.phoneNumber}}<br>\n                Email: {{contact.email}}\n            </div>     \n            ",
+                        inputs: ["contact"]
                     }), 
                     __metadata('design:paramtypes', [])
-                ], AuthorsComponent);
-                return AuthorsComponent;
+                ], ContactComponent);
+                return ContactComponent;
             }());
-            exports_1("AuthorsComponent", AuthorsComponent);
+            exports_1("ContactComponent", ContactComponent);
         }
     }
 });
-//# sourceMappingURL=authors.component.js.map
+//# sourceMappingURL=contact.component.js.map
