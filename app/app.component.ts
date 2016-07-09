@@ -1,20 +1,31 @@
 import {Component} from 'angular2/core';
-import {CoursesComponent} from '/app/components/courses.component';
-import {AuthorsComponent} from '/app/components/authors.component';
-import {TopbarComponent} from '/app/components/topbar.component';
-import {ContactListComponent} from "/app/components/contact-list.component";
+import {RouteConfig} from 'angular2/router';
+import {ROUTER_DIRECTIVES} from 'angular2/router';
+import {ContactListComponent} from '/app/components/contact-list.component';
 
-@Component({
+@Component({ 
     selector: 'my-app',
     template: `
-<topbar></topbar> 
-<h1>Hello Angular jajaja</h1> 
-<div>The title of courses page</div>
-<courses></courses>
-<authors></authors>
-<contactList></contactList>
+        <header>
+            <nav>
+                <a [routerLink]="['Contacts']">Contacts</a>
+                <a [routerLink]="['NewContact']">New Contact</a>    
+            </nav>
+        </header>
+        <div class="main">
+            <router-outlet></router-outlet>
+        </div>
 `,
-    directives: [CoursesComponent, TopbarComponent, AuthorsComponent, ContactListComponent]
+    directives: [
+        ContactListComponent,
+        ROUTER_DIRECTIVES
+    ],
+    styleUrls: ["app/app.css"]
 })
+@RouteConfig([
+    {path: '/contacts', name: 'Contacts', component: ContactListComponent},
+    {path: '/newcontact', name: 'NewContact', component: ContactListComponent},
+])
 export class AppComponent {
+
 }

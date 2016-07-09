@@ -1,4 +1,4 @@
-System.register(['angular2/core', '/app/components/courses.component', '/app/components/authors.component', '/app/components/topbar.component', "/app/components/contact-list.component"], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', '/app/components/contact-list.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,21 +10,16 @@ System.register(['angular2/core', '/app/components/courses.component', '/app/com
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, courses_component_1, authors_component_1, topbar_component_1, contact_list_component_1;
+    var core_1, router_1, router_2, contact_list_component_1;
     var AppComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (courses_component_1_1) {
-                courses_component_1 = courses_component_1_1;
-            },
-            function (authors_component_1_1) {
-                authors_component_1 = authors_component_1_1;
-            },
-            function (topbar_component_1_1) {
-                topbar_component_1 = topbar_component_1_1;
+            function (router_1_1) {
+                router_1 = router_1_1;
+                router_2 = router_1_1;
             },
             function (contact_list_component_1_1) {
                 contact_list_component_1 = contact_list_component_1_1;
@@ -36,9 +31,17 @@ System.register(['angular2/core', '/app/components/courses.component', '/app/com
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n<topbar></topbar> \n<h1>Hello Angular jajaja</h1> \n<div>The title of courses page</div>\n<courses></courses>\n<authors></authors>\n<contactList></contactList>\n",
-                        directives: [courses_component_1.CoursesComponent, topbar_component_1.TopbarComponent, authors_component_1.AuthorsComponent, contact_list_component_1.ContactListComponent]
-                    }), 
+                        template: "\n        <header>\n            <nav>\n                <a [routerLink]=\"['Contacts']\">Contacts</a>\n                <a [routerLink]=\"['NewContact']\">New Contact</a>    \n            </nav>\n        </header>\n        <div class=\"main\">\n            <router-outlet></router-outlet>\n        </div>\n",
+                        directives: [
+                            contact_list_component_1.ContactListComponent,
+                            router_2.ROUTER_DIRECTIVES
+                        ],
+                        styleUrls: ["app/app.css"]
+                    }),
+                    router_1.RouteConfig([
+                        { path: '/contacts', name: 'Contacts', component: contact_list_component_1.ContactListComponent },
+                        { path: '/newcontact', name: 'NewContact', component: contact_list_component_1.ContactListComponent },
+                    ]), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);
                 return AppComponent;
