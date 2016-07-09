@@ -5,7 +5,7 @@ import {Component} from 'angular2/core';
     template: `
             <input [(ngModel)] = "contact.firstName" type="text">
             <div>
-                Phone number: {{contact.phoneNumber}}<br>
+                Phone number: {{contact.phone}}<br>
                 Email: {{contact.email}}
             </div>     
             `,

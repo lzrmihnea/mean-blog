@@ -1,4 +1,4 @@
-System.register(['angular2/core'], function(exports_1, context_1) {
+System.register(["angular2/core", "app/components/mock-contact"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,30 +10,31 @@ System.register(['angular2/core'], function(exports_1, context_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
-    var ContactComponent;
+    var core_1, mock_contact_1;
+    var ContactService;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (mock_contact_1_1) {
+                mock_contact_1 = mock_contact_1_1;
             }],
         execute: function() {
-            ContactComponent = (function () {
-                function ContactComponent() {
-                    this.contact = {};
+            ContactService = (function () {
+                function ContactService() {
                 }
-                ContactComponent = __decorate([
-                    core_1.Component({
-                        selector: 'contact',
-                        template: "\n            <input [(ngModel)] = \"contact.firstName\" type=\"text\">\n            <div>\n                Phone number: {{contact.phone}}<br>\n                Email: {{contact.email}}\n            </div>     \n            ",
-                        inputs: ["contact"]
-                    }), 
+                ContactService.prototype.getContacts = function () {
+                    return Promise.resolve(mock_contact_1.CONTACTS);
+                };
+                ContactService = __decorate([
+                    core_1.Injectable(), 
                     __metadata('design:paramtypes', [])
-                ], ContactComponent);
-                return ContactComponent;
+                ], ContactService);
+                return ContactService;
             }());
-            exports_1("ContactComponent", ContactComponent);
+            exports_1("ContactService", ContactService);
         }
     }
 });
-//# sourceMappingURL=contact.component.js.map
+//# sourceMappingURL=contact.service.js.map

@@ -1,4 +1,4 @@
-System.register(['angular2/core', "app/components/contact.component"], function(exports_1, context_1) {
+System.register(['angular2/core', "app/components/contact.component", "app/services/contact.service"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', "app/components/contact.component"], function(
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, contact_component_1;
+    var core_1, contact_component_1, contact_service_1;
     var ContactListComponent;
     return {
         setters:[
@@ -19,36 +19,38 @@ System.register(['angular2/core', "app/components/contact.component"], function(
             },
             function (contact_component_1_1) {
                 contact_component_1 = contact_component_1_1;
+            },
+            function (contact_service_1_1) {
+                contact_service_1 = contact_service_1_1;
             }],
         execute: function() {
             ContactListComponent = (function () {
-                function ContactListComponent() {
-                    this.contacts = [{
-                            firstname: "Dan",
-                            lastname: "Blitz",
-                            phoneNumber: "002352",
-                            email: "this@email.com"
-                        },
-                        {
-                            firstname: "Max",
-                            lastname: "Ching",
-                            phoneNumber: "0069",
-                            email: "this@emaix.com"
-                        }];
+                function ContactListComponent(_contactService) {
+                    this._contactService = _contactService;
                     this.selectedContact = {};
                 }
                 ContactListComponent.prototype.onSelect = function (contact) {
                     this.selectedContact = contact;
                 };
+                ContactListComponent.prototype.getContacts = function () {
+                    var _this = this;
+                    this._contactService.getContacts().then(function (contacts) { return _this.contacts = contacts; });
+                };
+                ContactListComponent.prototype.ngOnInit = function () {
+                    this.getContacts();
+                };
                 ContactListComponent = __decorate([
                     core_1.Component({
                         selector: "contactList",
-                        template: "\n            <ul>\n                <li *ngFor=\"#contact of contacts\"\n                    (click)=\"onSelect(contact)\"\n                     [class.clicked]=\"showDetail === true\"\n                    >\n                    {{contact.firstname}} {{contact.lastname}}\n                </li>\n            </ul>\n            <contact [contact]=\"selectedContact\"></contact>       \n    ",
-                        directives: [contact_component_1.ContactComponent]
+                        template: "\n            <ul>\n                <li *ngFor=\"#contact of contacts\"\n                    (click)=\"onSelect(contact)\"\n                     [class.clicked]=\"selectedContact === contact\"\n                    >\n                    {{contact.firstName}} {{contact.lastName}}\n                </li>\n            </ul>\n            <contact [contact]=\"selectedContact\"></contact>       \n    ",
+                        directives: [contact_component_1.ContactComponent],
+                        providers: [contact_service_1.ContactService],
+                        styleUrls: ["dev/contacts/contact-list.css"]
                     }), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [(typeof (_a = typeof contact_service_1.ContactService !== 'undefined' && contact_service_1.ContactService) === 'function' && _a) || Object])
                 ], ContactListComponent);
                 return ContactListComponent;
+                var _a;
             }());
             exports_1("ContactListComponent", ContactListComponent);
         }

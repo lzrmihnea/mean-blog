@@ -1,5 +1,7 @@
-import {Component} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {ContactComponent} from "app/components/contact.component";
+import {ContactService} from "app/services/contact.service";
+import {Contact} from "app/components/contact";
 
 @Component({
     selector: "contactList",
@@ -7,32 +9,36 @@ import {ContactComponent} from "app/components/contact.component";
             <ul>
                 <li *ngFor="#contact of contacts"
                     (click)="onSelect(contact)"
-                     [class.clicked]="showDetail === true"
+                     [class.clicked]="selectedContact === contact"
                     >
-                    {{contact.firstname}} {{contact.lastname}}
+                    {{contact.firstName}} {{contact.lastName}}
                 </li>
             </ul>
             <contact [contact]="selectedContact"></contact>       
     `,
-    directives: [ContactComponent]
+    directives: [ContactComponent],
+    providers: [ContactService],
+    styleUrls: ["dev/contacts/contact-list.css"]
 })
 
-export class ContactListComponent {
-    public contacts = [{
-        firstname: "Dan",
-        lastname: "Blitz",
-        phoneNumber: "002352",
-        email: "this@email.com"
-    },
-        {
-            firstname: "Max",
-            lastname: "Ching",
-            phoneNumber: "0069",
-            email: "this@emaix.com"
-        }];
+export class ContactListComponent implements OnInit {
 
+    public contacts : Contact[];
     public selectedContact = {};
+
+    constructor(private _contactService:ContactService) {
+
+    }
+
     onSelect(contact) {
         this.selectedContact = contact;
+    }
+
+    getContacts() {
+        this._contactService.getContacts().then((contacts:Contact[])=>this.contacts = contacts);
+    }
+
+    ngOnInit():any{
+        this.getContacts();
     }
 }
