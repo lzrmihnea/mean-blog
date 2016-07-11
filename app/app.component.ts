@@ -2,6 +2,7 @@ import {Component} from 'angular2/core';
 import {RouteConfig} from 'angular2/router';
 import {ROUTER_DIRECTIVES} from 'angular2/router';
 import {ContactListComponent} from '/app/components/contact-list.component';
+import {NewContactComponent} from "app/components/new-contact.component";
 
 @Component({ 
     selector: 'my-app',
@@ -20,11 +21,11 @@ import {ContactListComponent} from '/app/components/contact-list.component';
         ContactListComponent,
         ROUTER_DIRECTIVES
     ],
-    styleUrls: ["app/app.css"]
+    styleUrls: ["./app/app.css"]
 })
 @RouteConfig([
-    {path: '/contacts', name: 'Contacts', component: ContactListComponent},
-    {path: '/newcontact', name: 'NewContact', component: ContactListComponent},
+    {path: '/contacts', name: 'Contacts', component: ContactListComponent, useAsDefault:true},
+    {path: '/newcontact', name: 'NewContact', component: NewContactComponent},
 ])
 export class AppComponent {
 

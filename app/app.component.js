@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', '/app/components/contact-list.component'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', '/app/components/contact-list.component', "app/components/new-contact.component"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', '/app/components/contact-li
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, router_2, contact_list_component_1;
+    var core_1, router_1, router_2, contact_list_component_1, new_contact_component_1;
     var AppComponent;
     return {
         setters:[
@@ -23,6 +23,9 @@ System.register(['angular2/core', 'angular2/router', '/app/components/contact-li
             },
             function (contact_list_component_1_1) {
                 contact_list_component_1 = contact_list_component_1_1;
+            },
+            function (new_contact_component_1_1) {
+                new_contact_component_1 = new_contact_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -36,11 +39,11 @@ System.register(['angular2/core', 'angular2/router', '/app/components/contact-li
                             contact_list_component_1.ContactListComponent,
                             router_2.ROUTER_DIRECTIVES
                         ],
-                        styleUrls: ["app/app.css"]
+                        styleUrls: ["./app/app.css"]
                     }),
                     router_1.RouteConfig([
-                        { path: '/contacts', name: 'Contacts', component: contact_list_component_1.ContactListComponent },
-                        { path: '/newcontact', name: 'NewContact', component: contact_list_component_1.ContactListComponent },
+                        { path: '/contacts', name: 'Contacts', component: contact_list_component_1.ContactListComponent, useAsDefault: true },
+                        { path: '/newcontact', name: 'NewContact', component: new_contact_component_1.NewContactComponent },
                     ]), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);
