@@ -27,7 +27,7 @@ System.register(['angular2/core', "app/components/contact.component", "app/servi
             ContactListComponent = (function () {
                 function ContactListComponent(_contactService) {
                     this._contactService = _contactService;
-                    this.selectedContact = {};
+                    this.selectedContact = null;
                 }
                 ContactListComponent.prototype.onSelect = function (contact) {
                     this.selectedContact = contact;
@@ -42,7 +42,7 @@ System.register(['angular2/core', "app/components/contact.component", "app/servi
                 ContactListComponent = __decorate([
                     core_1.Component({
                         selector: "contactList",
-                        template: "\n            <ul>\n                <li *ngFor=\"#contact of contacts\"\n                    (click)=\"onSelect(contact)\"\n                     [class.clicked]=\"selectedContact === contact\"\n                    >\n                    {{contact.firstName}} {{contact.lastName}}\n                </li>\n            </ul>\n            <contact [contact]=\"selectedContact\"></contact>       \n    ",
+                        template: "\n            <ul>\n                <li *ngFor=\"#contact of contacts\"\n                    (click)=\"onSelect(contact)\"\n                     [class.clicked]=\"selectedContact === contact\"\n                    >\n                    {{contact.firstName}} {{contact.lastName}}\n                </li>\n            </ul>\n            <contact *ngIf=\"selectedContact !== null\" [contact]=\"selectedContact\"></contact>\n           ",
                         directives: [contact_component_1.ContactComponent],
                         providers: [contact_service_1.ContactService],
                         styleUrls: ["dev/contacts/contact-list.css"]

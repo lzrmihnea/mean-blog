@@ -48,8 +48,7 @@ export class NewContactComponent {
 
     constructor(
         private _contactService:ContactService,
-        private _router: Router) {
-    }
+        private _router: Router) { }
 
     onAddContact(
         firstName,

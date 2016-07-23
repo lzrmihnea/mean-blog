@@ -14,8 +14,8 @@ import {Contact} from "app/components/contact";
                     {{contact.firstName}} {{contact.lastName}}
                 </li>
             </ul>
-            <contact [contact]="selectedContact"></contact>       
-    `,
+            <contact *ngIf="selectedContact !== null" [contact]="selectedContact"></contact>
+           `,
     directives: [ContactComponent],
     providers: [ContactService],
     styleUrls: ["dev/contacts/contact-list.css"]
@@ -23,8 +23,8 @@ import {Contact} from "app/components/contact";
 
 export class ContactListComponent implements OnInit {
 
-    public contacts : Contact[];
-    public selectedContact = {};
+    public contacts:Contact[];
+    public selectedContact = null;
 
     constructor(private _contactService:ContactService) {
 
@@ -38,7 +38,7 @@ export class ContactListComponent implements OnInit {
         this._contactService.getContacts().then((contacts:Contact[])=>this.contacts = contacts);
     }
 
-    ngOnInit():any{
+    ngOnInit():any {
         this.getContacts();
     }
 }

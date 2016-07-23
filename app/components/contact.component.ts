@@ -20,6 +20,7 @@ import {Component} from 'angular2/core';
                     <label for="email">Email:</label>
                     <input [(ngModel)] = "contact.email" type="text" id="email">
                 </div>
+                <button>Create new contact from this contact</button>
             </div>     
             `,
     inputs: ["contact"],
