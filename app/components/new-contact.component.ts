@@ -1,6 +1,7 @@
 import {Component} from "angular2/core";
 import {ContactService} from "app/services/contact.service";
 import {Contact} from "app/components/contact";
+import {Router} from "angular2/router";
 
 @Component({
     template: `
@@ -45,7 +46,9 @@ import {Contact} from "app/components/contact";
 })
 export class NewContactComponent {
 
-    constructor(private _contactService:ContactService) {
+    constructor(
+        private _contactService:ContactService,
+        private _router: Router) {
     }
 
     onAddContact(
@@ -61,5 +64,6 @@ export class NewContactComponent {
             email: email
         };
         this._contactService.insertContact(contact);
+        this._router.navigate(["Contacts"]);
     }
 }

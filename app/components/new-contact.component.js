@@ -1,4 +1,4 @@
-System.register(["angular2/core", "app/services/contact.service"], function(exports_1, context_1) {
+System.register(["angular2/core", "app/services/contact.service", "angular2/router"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(["angular2/core", "app/services/contact.service"], function(expo
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, contact_service_1;
+    var core_1, contact_service_1, router_1;
     var NewContactComponent;
     return {
         setters:[
@@ -19,11 +19,15 @@ System.register(["angular2/core", "app/services/contact.service"], function(expo
             },
             function (contact_service_1_1) {
                 contact_service_1 = contact_service_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
             }],
         execute: function() {
             NewContactComponent = (function () {
-                function NewContactComponent(_contactService) {
+                function NewContactComponent(_contactService, _router) {
                     this._contactService = _contactService;
+                    this._router = _router;
                 }
                 NewContactComponent.prototype.onAddContact = function (firstName, lastName, phone, email) {
                     var contact = {
@@ -33,6 +37,7 @@ System.register(["angular2/core", "app/services/contact.service"], function(expo
                         email: email
                     };
                     this._contactService.insertContact(contact);
+                    this._router.navigate(["Contacts"]);
                 };
                 NewContactComponent = __decorate([
                     core_1.Component({
@@ -40,7 +45,7 @@ System.register(["angular2/core", "app/services/contact.service"], function(expo
                         styles: ["\n        label {\n        display: inline-block;\n        width: 140px;\n        }\n        \n        input {\n            width: 250px;\n        }\n    "],
                         providers: [contact_service_1.ContactService]
                     }), 
-                    __metadata('design:paramtypes', [(typeof (_a = typeof contact_service_1.ContactService !== 'undefined' && contact_service_1.ContactService) === 'function' && _a) || Object])
+                    __metadata('design:paramtypes', [(typeof (_a = typeof contact_service_1.ContactService !== 'undefined' && contact_service_1.ContactService) === 'function' && _a) || Object, router_1.Router])
                 ], NewContactComponent);
                 return NewContactComponent;
                 var _a;
