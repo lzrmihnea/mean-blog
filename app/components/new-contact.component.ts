@@ -49,7 +49,7 @@ import {Router, RouteParams} from "angular2/router";
                         >
                 </div>
             </div>   
-            <button type="submit">Create contact</button>
+            <button type="submit" [disabled]="!myForm.form.valid">Create contact</button>
         </form>
     `,
     styles: [`
