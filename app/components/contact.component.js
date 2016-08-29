@@ -27,7 +27,7 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
                     this.contact = null;
                 }
                 ContactComponent.prototype.onCreateNew = function () {
-                    this._router.navigate(['NewContactFromContact', { lastName: this.contact.lastName }]);
+                    this._router.navigate(['NewContact', { lastName: this.contact.lastName }]);
                 };
                 ContactComponent = __decorate([
                     core_1.Component({
