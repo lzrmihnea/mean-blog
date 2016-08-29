@@ -44,7 +44,6 @@ System.register(['angular2/core', 'angular2/router', '/app/components/contact-li
                     router_1.RouteConfig([
                         { path: '/contacts', name: 'Contacts', component: contact_list_component_1.ContactListComponent, useAsDefault: true },
                         { path: '/newcontact', name: 'NewContact', component: new_contact_component_1.NewContactComponent },
-                        { path: '/newcontact/:lastName', name: 'NewContactFromContact', component: new_contact_component_1.NewContactComponent },
                     ]), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);

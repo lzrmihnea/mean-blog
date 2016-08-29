@@ -29,25 +29,23 @@ System.register(["angular2/core", "app/services/contact.service", "angular2/rout
                     this._contactService = _contactService;
                     this._router = _router;
                     this._routeParams = _routeParams;
-                    this.passedLastName = "";
                 }
-                NewContactComponent.prototype.onAddContact = function (firstName, lastName, phone, email) {
-                    var contact = {
-                        firstName: firstName,
-                        lastName: lastName,
-                        phone: phone,
-                        email: email
-                    };
-                    this._contactService.insertContact(contact);
+                NewContactComponent.prototype.onSubmit = function () {
+                    this._contactService.insertContact(this.newContact);
                     this._router.navigate(["Contacts"]);
                 };
                 NewContactComponent.prototype.ngOnInit = function () {
-                    this.passedLastName = this._routeParams.get('lastName');
+                    this.newContact = {
+                        firstName: '',
+                        lastName: this._routeParams.get('lastName'),
+                        phone: '',
+                        email: ''
+                    };
                 };
                 NewContactComponent = __decorate([
                     core_1.Component({
-                        template: "\n        Create a component\n        \n        <div>\n                <div>\n                 <label for=\"first-name\">First Name:</label>\n                    <input type=\"text\" id=\"first-name\" #firstName>\n                </div>\n                <div>\n                     <label for=\"last-name\">Last Name:</label>    \n                     <input type=\"text\" id=\"last-name\" #lastName value=\"{{passedLastName}}\">\n                </div> \n                <div>       \n                     <label for=\"phone\">Phone number:</label>\n                    <input type=\"text\" id=\"phone\" #phone>\n                </div>\n                <div>\n                    <label for=\"email\">Email:</label>\n                    <input type=\"text\" id=\"email\" #email>\n                </div>\n            </div>   \n            <button (click)=\"onAddContact(\n                firstName.value,\n                lastName.value,\n                phone.value,\n                email.value\n            )\">Create contact</button>\n    ",
-                        styles: ["\n        label {\n        display: inline-block;\n        width: 140px;\n        }\n        \n        input {\n            width: 250px;\n        }\n    "],
+                        template: "\n        Create a component\n        <form #myForm=\"ngForm\">\n            <div>\n                <div>\n                 <label for=\"first-name\">First Name:</label>\n                    <input \n                        type=\"text\" \n                        id=\"first-name\"\n                        ngControl=\"firstName\"\n                        [(ngModel)]=\"newContact.firstName\"\n                        required\n                        >\n                </div>\n                <div>\n                     <label for=\"last-name\">Last Name:</label>    \n                     <input \n                        type=\"text\" \n                        id=\"last-name\" \n                        ngControl=\"lastName\"\n                        [(ngModel)]=\"newContact.lastName\"\n                        required\n                        >\n                </div> \n                <div>       \n                     <label for=\"phone\">Phone number:</label>\n                    <input \n                        type=\"text\" \n                        id=\"phone\" \n                        ngControl=\"phone\"\n                        [(ngModel)]=\"newContact.phone\"\n                        required\n                        >\n                </div>\n                <div>\n                    <label for=\"email\">Email:</label>\n                    <input \n                        type=\"text\" \n                        id=\"email\" \n                        ngControl=\"email\"\n                        [(ngModel)]=\"newContact.email\"\n                        required\n                        >\n                </div>\n            </div>   \n            <button type=\"submit\">Create contact</button>\n        </form>\n    ",
+                        styles: ["\n        label {\n        display: inline-block;\n        width: 140px;\n        }\n        \n        input {\n            width: 250px;\n        }\n        \n        .ng-invalid.ng-touched{\n            border: 1px solid red;\n        }\n    "],
                         providers: [contact_service_1.ContactService]
                     }), 
                     __metadata('design:paramtypes', [(typeof (_a = typeof contact_service_1.ContactService !== 'undefined' && contact_service_1.ContactService) === 'function' && _a) || Object, router_1.Router, router_1.RouteParams])
