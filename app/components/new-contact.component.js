@@ -25,9 +25,11 @@ System.register(["angular2/core", "app/services/contact.service", "angular2/rout
             }],
         execute: function() {
             NewContactComponent = (function () {
-                function NewContactComponent(_contactService, _router) {
+                function NewContactComponent(_contactService, _router, _routeParams) {
                     this._contactService = _contactService;
                     this._router = _router;
+                    this._routeParams = _routeParams;
+                    this.passedLastName = "";
                 }
                 NewContactComponent.prototype.onAddContact = function (firstName, lastName, phone, email) {
                     var contact = {
@@ -39,13 +41,16 @@ System.register(["angular2/core", "app/services/contact.service", "angular2/rout
                     this._contactService.insertContact(contact);
                     this._router.navigate(["Contacts"]);
                 };
+                NewContactComponent.prototype.ngOnInit = function () {
+                    this.passedLastName = this._routeParams.get('lastName');
+                };
                 NewContactComponent = __decorate([
                     core_1.Component({
-                        template: "\n        Create a component\n        \n        <div>\n                <div>\n                 <label for=\"first-name\">First Name:</label>\n                    <input type=\"text\" id=\"first-name\" #firstName>\n                </div>\n                <div>\n                     <label for=\"last-name\">Last Name:</label>    \n                     <input type=\"text\" id=\"last-name\" #lastName>\n                </div> \n                <div>       \n                     <label for=\"phone\">Phone number:</label>\n                    <input type=\"text\" id=\"phone\" #phone>\n                </div>\n                <div>\n                    <label for=\"email\">Email:</label>\n                    <input type=\"text\" id=\"email\" #email>\n                </div>\n            </div>   \n            <button (click)=\"onAddContact(\n                firstName.value,\n                lastName.value,\n                phone.value,\n                email.value\n            )\">Create contact</button>\n    ",
+                        template: "\n        Create a component\n        \n        <div>\n                <div>\n                 <label for=\"first-name\">First Name:</label>\n                    <input type=\"text\" id=\"first-name\" #firstName>\n                </div>\n                <div>\n                     <label for=\"last-name\">Last Name:</label>    \n                     <input type=\"text\" id=\"last-name\" #lastName value=\"{{passedLastName}}\">\n                </div> \n                <div>       \n                     <label for=\"phone\">Phone number:</label>\n                    <input type=\"text\" id=\"phone\" #phone>\n                </div>\n                <div>\n                    <label for=\"email\">Email:</label>\n                    <input type=\"text\" id=\"email\" #email>\n                </div>\n            </div>   \n            <button (click)=\"onAddContact(\n                firstName.value,\n                lastName.value,\n                phone.value,\n                email.value\n            )\">Create contact</button>\n    ",
                         styles: ["\n        label {\n        display: inline-block;\n        width: 140px;\n        }\n        \n        input {\n            width: 250px;\n        }\n    "],
                         providers: [contact_service_1.ContactService]
                     }), 
-                    __metadata('design:paramtypes', [(typeof (_a = typeof contact_service_1.ContactService !== 'undefined' && contact_service_1.ContactService) === 'function' && _a) || Object, router_1.Router])
+                    __metadata('design:paramtypes', [(typeof (_a = typeof contact_service_1.ContactService !== 'undefined' && contact_service_1.ContactService) === 'function' && _a) || Object, router_1.Router, router_1.RouteParams])
                 ], NewContactComponent);
                 return NewContactComponent;
                 var _a;
