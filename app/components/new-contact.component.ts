@@ -1,31 +1,28 @@
 import {Component, OnInit} from "angular2/core";
 import {ContactService} from "app/services/contact.service";
-import {Contact} from "app/components/contact";
 import {Router, RouteParams} from "angular2/router";
+import {ControlGroup, FormBuilder, Validators} from "angular2/common";
 
 @Component({
     template: `
         Create a component
-        <form #myForm="ngForm">
+        <form [ngFormModel]="myForm" (ngSubmit)="onSubmit(myForm.value)">
             <div>
                 <div>
                  <label for="first-name">First Name:</label>
                     <input 
                         type="text" 
                         id="first-name"
-                        ngControl="firstName"
-                        [(ngModel)]="newContact.firstName"
-                        required
+                        [ngFormControl]="myForm.controls['firstName']"
                         >
                 </div>
+                <span *ngIf="!myForm.controls['firstName'].valid">Not valid</span>
                 <div>
                      <label for="last-name">Last Name:</label>    
                      <input 
                         type="text" 
                         id="last-name" 
-                        ngControl="lastName"
-                        [(ngModel)]="newContact.lastName"
-                        required
+                        [ngFormControl]="myForm.controls['lastName']"
                         >
                 </div> 
                 <div>       
@@ -33,9 +30,7 @@ import {Router, RouteParams} from "angular2/router";
                     <input 
                         type="text" 
                         id="phone" 
-                        ngControl="phone"
-                        [(ngModel)]="newContact.phone"
-                        required
+                        [ngFormControl]="myForm.controls['phone']"
                         >
                 </div>
                 <div>
@@ -43,13 +38,11 @@ import {Router, RouteParams} from "angular2/router";
                     <input 
                         type="text" 
                         id="email" 
-                        ngControl="email"
-                        [(ngModel)]="newContact.email"
-                        required
+                        [ngFormControl]="myForm.controls['email']"
                         >
                 </div>
             </div>   
-            <button type="submit" [disabled]="!myForm.form.valid">Create contact</button>
+            <button type="submit" [disabled]="!myForm.valid">Create contact</button>
         </form>
     `,
     styles: [`
@@ -70,24 +63,26 @@ import {Router, RouteParams} from "angular2/router";
 })
 export class NewContactComponent implements OnInit {
 
-    newContact: Contact;
+    myForm: ControlGroup;
 
-    constructor(private _contactService:ContactService,
-                private _router:Router,
-                private _routeParams:RouteParams) {
+    constructor(private _contactService : ContactService,
+                private _router : Router,
+                private _routeParams :RouteParams,
+                private _formBuilder : FormBuilder) {
     }
 
-    onSubmit() {
-        this._contactService.insertContact(this.newContact);
+    onSubmit(newContactValue) {
+        this._contactService.insertContact(newContactValue);
         this._router.navigate(["Contacts"]);
     }
 
 
-    ngOnInit(): any{
-        this.newContact = {
-            firstName : '',
-            lastName : this._routeParams.get('lastName'),
-            phone : '',
-            email : ''
-        };
+    ngOnInit(): any {
+        this.myForm = this._formBuilder.group({
+            'firstName' : ['', Validators.required],
+            'lastName' : [this._routeParams.get('lastName'), Validators.required],
+            'phone' : ['', Validators.required],
+            'email' : ['', Validators.required]
+        });
+    }
 }
