@@ -3,6 +3,7 @@ import {RouteConfig} from 'angular2/router';
 import {ROUTER_DIRECTIVES} from 'angular2/router';
 import {ContactListComponent} from '/app/components/contact-list.component';
 import {NewContactComponent} from "app/components/new-contact.component";
+import {HttpTestComponent} from "app/components/http-test.component";
 
 @Component({ 
     selector: 'my-app',
@@ -15,10 +16,12 @@ import {NewContactComponent} from "app/components/new-contact.component";
         </header>
         <div class="main">
             <router-outlet></router-outlet>
+            <http-test></http-test>
         </div>
 `,
     directives: [
         ContactListComponent,
+        HttpTestComponent,
         ROUTER_DIRECTIVES
     ],
     styleUrls: ["./app/app.css"]
