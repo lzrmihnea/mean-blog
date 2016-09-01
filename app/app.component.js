@@ -33,11 +33,15 @@ System.register(['angular2/core', 'angular2/router', '/app/components/contact-li
         execute: function() {
             AppComponent = (function () {
                 function AppComponent() {
+                    this.date = new Date();
+                    this.randomData = new Promise(function (resolve, reject) {
+                        setTimeout(function () { return resolve('Random data!'); }, 1000);
+                    });
                 }
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n        <header>\n            <nav>\n                <a [routerLink]=\"['Contacts']\">Contacts</a>\n                <a [routerLink]=\"['NewContact']\">New Contact</a>    \n            </nav>\n        </header>\n        <div class=\"main\">\n            <router-outlet></router-outlet>\n            <http-test></http-test>\n        </div>\n",
+                        template: "\n        <header>\n            <nav>\n                <a [routerLink]=\"['Contacts']\">Contacts</a>\n                <a [routerLink]=\"['NewContact']\">New Contact</a>    \n            </nav>\n        </header>\n        <div class=\"main\">\n            <router-outlet></router-outlet>\n            <http-test></http-test>\n            <div class=\"pipes\">\n                <h2>Date Pipe</h2>\n                <div>\n                    {{date | date}}\n                </div>\n                <h2>Number pipe</h2>\n                <div>\n                    {{4.566 | number:'1.2-2'}}\n                </div>\n                <h2>Currency Pipe</h2>\n                <div>\n                    {{ 15.99 | currency:'EUR':true}}    \n                </div>\n                <h2>Stateful Pipe</h2>\n                <div>{{randomData | async}}</div>\n            </div>\n        </div>\n",
                         directives: [
                             contact_list_component_1.ContactListComponent,
                             http_test_component_1.HttpTestComponent,
