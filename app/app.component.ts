@@ -34,10 +34,14 @@ import {ChildComponent} from "./child-component";
                 <h2>Stateful Pipe</h2>
                 <div>{{randomData | async}}</div>
             </div>
-            <input type="text" #parentInput (keyup)="0"><br>
-            <button>Click me</button>
-            <div class="child">
-                <child [parentValue]="parentInput.value"></child>
+            <div class="parent">
+                <h1>Parent</h1>
+                <p>Value entered in child component: {{childValue}}</p>
+                <input type="text" #parentInput (keyup)="0"><br>
+                <div class="child">
+                    <child [parentValue]="parentInput.value"
+                        (childChanged)="childValue=$event"></child>
+                </div>
             </div>
         </div>
 `,
@@ -55,6 +59,7 @@ import {ChildComponent} from "./child-component";
 ])
 export class AppComponent {
     date = new Date();
+    childValue: string;
     randomData = new Promise((resolve, reject)=>{
         setTimeout(() => resolve('Random data!'),1000);
     });
