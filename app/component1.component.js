@@ -34,8 +34,7 @@ System.register(["angular2/core", "./services/data.service"], function(exports_1
                 Component1Component = __decorate([
                     core_1.Component({
                         selector: 'my-component-1',
-                        template: "\n        <h1>Component 1</h1>\n        <div>\n            <button (click)=\"onGetData()\">Get random data</button>\n            <p>Random data: {{data}}</p>\n            <input type=\"text\" #input>\n            <button (click)=\"onAddItem(input.value)\">Add</button>\n        </div>\n    ",
-                        providers: [data_service_1.DataService]
+                        template: "\n        <h1>Component 1</h1>\n        <div>\n            <button (click)=\"onGetData()\">Get random data</button>\n            <p>Random data: {{data}}</p>\n            <input type=\"text\" #input>\n            <button (click)=\"onAddItem(input.value)\">Add</button>\n        </div>\n    "
                     }), 
                     __metadata('design:paramtypes', [data_service_1.DataService])
                 ], Component1Component);

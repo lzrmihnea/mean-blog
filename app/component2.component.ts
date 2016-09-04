@@ -9,8 +9,7 @@ import {Component} from "angular2/core";
             <input type="text" #input>
             <button (click)="onAddItem(input.value)">Add</button>
         </div>
-    `,
-    providers: [DataService]
+    `
 })
 export class Component2Component {
     data: string;

@@ -31,8 +31,7 @@ System.register(["angular2/core"], function(exports_1, context_1) {
                 Component2Component = __decorate([
                     core_1.Component({
                         selector: 'my-component-2',
-                        template: "\n        <h1>Component 2</h1>\n        <div>\n            <button (click)=\"onGetData()\">Get random data</button>\n            <p>Random data: {{data}}</p>\n            <input type=\"text\" #input>\n            <button (click)=\"onAddItem(input.value)\">Add</button>\n        </div>\n    ",
-                        providers: [DataService]
+                        template: "\n        <h1>Component 2</h1>\n        <div>\n            <button (click)=\"onGetData()\">Get random data</button>\n            <p>Random data: {{data}}</p>\n            <input type=\"text\" #input>\n            <button (click)=\"onAddItem(input.value)\">Add</button>\n        </div>\n    "
                     }), 
                     __metadata('design:paramtypes', [Object])
                 ], Component2Component);
