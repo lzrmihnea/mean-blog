@@ -5,6 +5,8 @@ import {ContactListComponent} from '/app/components/contact-list.component';
 import {NewContactComponent} from "app/components/new-contact.component";
 import {HttpTestComponent} from "app/components/http-test.component";
 import {ChildComponent} from "./child-component";
+import {Component1Component} from "./component1.component";
+import {Component2Component} from "./component2.component";
 
 @Component({ 
     selector: 'my-app',
@@ -43,12 +45,21 @@ import {ChildComponent} from "./child-component";
                         (childChanged)="childValue=$event"></child>
                 </div>
             </div>
+            <section class="component">
+               <my-component-1></my-component-1>
+            </section>
+            <section class="component">
+               <my-component-2></my-component-2>
+            </section>
+            
         </div>
 `,
     directives: [
         ContactListComponent,
         HttpTestComponent,
         ROUTER_DIRECTIVES,
+        Component1Component,
+        Component2Component,
         ChildComponent
     ],
     styleUrls: ["./app/app.css"]
