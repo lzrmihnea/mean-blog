@@ -25,12 +25,15 @@ System.register(["angular2/core"], function(exports_1, context_1) {
                 ChildComponent.prototype.onChange = function (value) {
                     this.childChanged.emit(value);
                 };
+                __decorate([
+                    core_1.Output(), 
+                    __metadata('design:type', Object)
+                ], ChildComponent.prototype, "childChanged", void 0);
                 ChildComponent = __decorate([
                     core_1.Component({
                         selector: 'child',
                         template: "<h2>Child</h2>\n    <p>Value entered in parent component: {{parentValue}}</p>\n    <input type=\"text\" \n            #childInput \n            (keyup)=\"onChange(childInput.value)\">\n    <br>\n",
-                        inputs: ['parentValue:passedValue'],
-                        outputs: ['childChanged']
+                        inputs: ['parentValue:passedValue']
                     }), 
                     __metadata('design:paramtypes', [])
                 ], ChildComponent);

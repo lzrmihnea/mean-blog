@@ -1,4 +1,4 @@
-import {Component, EventEmitter} from "angular2/core";
+import {Component, EventEmitter, Output} from "angular2/core";
 
 @Component({
     selector: 'child',
@@ -9,11 +9,11 @@ import {Component, EventEmitter} from "angular2/core";
             (keyup)="onChange(childInput.value)">
     <br>
 `,
-    inputs: ['parentValue:passedValue'],
-    outputs: ['childChanged']
+    inputs: ['parentValue:passedValue']
 })
 export class ChildComponent {
     parentValue : string;
+    @Output()
     childChanged = new EventEmitter<string>();
     onChange(value: string) {
         this.childChanged.emit(value);
