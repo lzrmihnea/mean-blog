@@ -4,6 +4,7 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
 import {ContactListComponent} from '/app/components/contact-list.component';
 import {NewContactComponent} from "app/components/new-contact.component";
 import {HttpTestComponent} from "app/components/http-test.component";
+import {ChildComponent} from "./child-component";
 
 @Component({ 
     selector: 'my-app',
@@ -33,12 +34,18 @@ import {HttpTestComponent} from "app/components/http-test.component";
                 <h2>Stateful Pipe</h2>
                 <div>{{randomData | async}}</div>
             </div>
+            <input type="text" #parentInput (keyup)="0"><br>
+            <button>Click me</button>
+            <div class="child">
+                <child [parentValue]="parentInput.value"></child>
+            </div>
         </div>
 `,
     directives: [
         ContactListComponent,
         HttpTestComponent,
-        ROUTER_DIRECTIVES
+        ROUTER_DIRECTIVES,
+        ChildComponent
     ],
     styleUrls: ["./app/app.css"]
 })
