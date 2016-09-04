@@ -9,7 +9,7 @@ import {Component, EventEmitter} from "angular2/core";
             (keyup)="onChange(childInput.value)">
     <br>
 `,
-    inputs: ['parentValue'],
+    inputs: ['parentValue:passedValue'],
     outputs: ['childChanged']
 })
 export class ChildComponent {

@@ -29,7 +29,7 @@ System.register(["angular2/core"], function(exports_1, context_1) {
                     core_1.Component({
                         selector: 'child',
                         template: "<h2>Child</h2>\n    <p>Value entered in parent component: {{parentValue}}</p>\n    <input type=\"text\" \n            #childInput \n            (keyup)=\"onChange(childInput.value)\">\n    <br>\n",
-                        inputs: ['parentValue'],
+                        inputs: ['parentValue:passedValue'],
                         outputs: ['childChanged']
                     }), 
                     __metadata('design:paramtypes', [])
