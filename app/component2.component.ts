@@ -1,4 +1,6 @@
-import {Component} from "angular2/core";
+import {Component, Injectable} from "angular2/core";
+import {DataService} from "./services/data.service";
+
 @Component({
     selector: 'my-component-2',
     template: `
@@ -11,6 +13,8 @@ import {Component} from "angular2/core";
         </div>
     `
 })
+
+@Injectable()
 export class Component2Component {
     data: string;
 
