@@ -29,6 +29,14 @@ module.exports = function (app) {
 
     });
 
+    // All posts
+    app.get('/.json', function (req, res, next) {
+        BlogPost.find({}).sort({created: -1}).exec(function (err, posts) {
+            if (err) return next(err);
+            res.json(posts);
+        });
+    });
+
     // SSL validation
     app.get("/C9AA3311FC272DF9B4B6C1130086576F.txt", function (req, res) {
         const SSL_VALIDATION_TXT_FILE = 'C9AA3311FC272DF9B4B6C1130086576F.txt';
