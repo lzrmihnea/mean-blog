@@ -35,6 +35,7 @@ module.exports = function (app) {
             if (err) return next(err);
             res.json(posts);
         });
+    });
 
     // SSL validation
     app.get("/C9AA3311FC272DF9B4B6C1130086576F.txt", function (req, res) {
