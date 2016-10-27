@@ -7,6 +7,7 @@ import {HttpTestComponent} from "app/components/http-test.component";
 import {ChildComponent} from "./child-component";
 import {Component1Component} from "./component1.component";
 import {Component2Component} from "./component2.component";
+import {PostComponent} from "./components/posts.component";
 
 @Component({ 
     selector: 'my-app',
@@ -19,6 +20,7 @@ import {Component2Component} from "./component2.component";
         </header>
         <div class="main">
             <router-outlet></router-outlet>
+            <posts></posts>
             <http-test></http-test>
             <div class="pipes">
                 <h2>Date Pipe</h2>
@@ -60,6 +62,7 @@ import {Component2Component} from "./component2.component";
         ROUTER_DIRECTIVES,
         Component1Component,
         Component2Component,
+        PostComponent,
         ChildComponent
     ],
     styleUrls: ["./app/app.css"]
