@@ -13,12 +13,10 @@ import {Post} from "./post";
         <!--<p>Posts: {{posts}}</p>-->
         
         <h2>List of posts</h2>
-        <ul>
-            <li *ngFor="#post of posts">
-                <p>{{post.title}}</p> 
-                <p>{{post.body}}</p>
-            </li>
-        </ul>
+        <div *ngFor="#post of posts">
+            <p><b>{{post.title}}</b></p> 
+            <p>{{post.body}}</p>
+        </div>
     `
     ,
     providers: [PostService]

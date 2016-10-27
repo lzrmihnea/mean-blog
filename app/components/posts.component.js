@@ -40,7 +40,7 @@ System.register(["angular2/core", "../services/posts.service"], function(exports
                 PostComponent = __decorate([
                     core_1.Component({
                         selector: 'posts',
-                        template: "\n        <!--<button (click)=\"onTestGet()\">Test GET Request of Posts </button><br>-->\n        <!--<p>Output: {{getData}}</p>-->\n        <!--<button (click)=\"onTestPost()\">Test POST Request</button><br>-->\n        <!--posts-->\n        <!--<p>Posts: {{posts}}</p>-->\n        \n        <h2>List of posts</h2>\n        <ul>\n            <li *ngFor=\"#post of posts\">\n                <p>{{post.title}}</p> \n                <p>{{post.body}}</p>\n            </li>\n        </ul>\n    ",
+                        template: "\n        <!--<button (click)=\"onTestGet()\">Test GET Request of Posts </button><br>-->\n        <!--<p>Output: {{getData}}</p>-->\n        <!--<button (click)=\"onTestPost()\">Test POST Request</button><br>-->\n        <!--posts-->\n        <!--<p>Posts: {{posts}}</p>-->\n        \n        <h2>List of posts</h2>\n        <div *ngFor=\"#post of posts\">\n            <p><b>{{post.title}}</b></p> \n            <p>{{post.body}}</p>\n        </div>\n    ",
                         providers: [posts_service_1.PostService]
                     }), 
                     __metadata('design:paramtypes', [posts_service_1.PostService])
